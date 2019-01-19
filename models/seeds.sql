@@ -12,6 +12,7 @@ insert into expenses.bills(Bill_Id,Total_BillItems,BillExpense,BillDate,CreatedA
 insert into expenses.bills(Bill_Id,Total_BillItems,BillExpense,BillDate,CreatedAt,UpdatedAt,UserUserId) values ('3','15','300','2019-01-18',Now(),Now(),'102');
 insert into expenses.bills(Bill_Id,Total_BillItems,BillExpense,BillDate,CreatedAt,UpdatedAt,UserUserId) values ('14','3','10','2019-01-18',Now(),Now(),'100');
 insert into expenses.bills(Bill_Id,Total_BillItems,BillExpense,BillDate,CreatedAt,UpdatedAt,UserUserId) values ('9','10','90','2019-01-18',Now(),Now(),'101');
+
 //items table
 
 insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,BillBillId) values ('Walmart','2019-01-18','1000','Need','Groceries',Now(),Now(),'1');
