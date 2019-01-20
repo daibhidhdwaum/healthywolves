@@ -1,11 +1,11 @@
-//Users table
+//users table
 
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('100','Manu',Now(),Now());
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('101','Saryn',Now(),Now());
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('102','Amanda',Now(),Now());
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('103','David',Now(),Now());
+insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('Manu',Now(),Now());
+insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('Saryn',Now(),Now());
+insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('Amanda',Now(),Now());
+insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('David',Now(),Now());
 
-//Bill table
+//bill table
 
 insert into expenses.bills(Bill_Id,Total_BillItems,BillExpense,BillDate,CreatedAt,UpdatedAt,UserUserId) values ('1','12','1000','2019-01-18',Now(),Now(),'100');
 insert into expenses.bills(Bill_Id,Total_BillItems,BillExpense,BillDate,CreatedAt,UpdatedAt,UserUserId) values ('2','10','500','2019-01-18',Now(),Now(),'103');

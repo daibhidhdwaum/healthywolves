@@ -8,9 +8,8 @@ module.exports = function(app) {
 
   // Load example page and pass in an example by id
   app.get("/user/:id", function(req, res) {
-    db.user.findOne({ where: { id: req.params.id } }).then(function(userData) {
+    db.user.findOne({ where: { id: req.params.id } }).then(function(UserId) {
       res.render("loggedIn", {
-        userData: userData,
         UserId: UserId,
         bill: bill,
         item: item
