@@ -6,17 +6,17 @@ module.exports = function (sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
-       /* Bill_id: {
-            type: Sequelize.INTEGER,
-            references: {
-                model: Bill,
-                // This is the column name of the referenced model
-                key: 'billId',
-                // This declares when to check the foreign key constraint. PostgreSQL only.
-                deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-            }
-        },*/
-      Store:
+        /* Bill_id: {
+             type: Sequelize.INTEGER,
+             references: {
+                 model: Bill,
+                 // This is the column name of the referenced model
+                 key: 'billId',
+                 // This declares when to check the foreign key constraint. PostgreSQL only.
+                 deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+             }
+         },*/
+        Store:
         {
             type: DataTypes.STRING,
             allowNull: false,
@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
         {
             type: DataTypes.STRING,
             allowNull: true,
-        }, 
+        },
         DOP:
         {
             type: DataTypes.DATE,
@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
         TYPE:
         {
             type: DataTypes.STRING,
-           
+
         },
         Category:
         {
