@@ -2,20 +2,19 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Expense Tracker</h2>
+        <h1>Expense Tracker</h1>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">New User</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Name">
+            <label for="new-user">New User</label>
+            <input type="text" id="new-user" class="form-control" aria-describedby="example-text" placeholder="Enter Name">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
         <h3>Existing Users</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+        <ul id="existing-users" class="list-group">
+          {{#each expenses.users}}
+          <li data-id="{{this.UserId}}" class="list-group-item">
+            <a href="users/{{this.UserId}}">{{this.password}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
