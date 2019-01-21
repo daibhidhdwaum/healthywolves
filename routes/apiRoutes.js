@@ -1,5 +1,7 @@
 var db = require("../models");
 
+// I'm just writing this here as a test
+
 module.exports = function (app) {
   // Get all users for login check
   app.get("/api/users", function (req, res) {
