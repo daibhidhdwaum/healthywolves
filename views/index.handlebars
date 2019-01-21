@@ -2,24 +2,27 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
+        <h1>Expense Tracker</h1>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="new-user">New User</label>
+            <input type="text" id="new-user" class="form-control" aria-describedby="example-text" placeholder="Enter Name">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+<<<<<<< HEAD
         <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
           {{#each User}}
           <li data-id="{{this.Password}}" class="list-group-item">
             <a href="example/{{this.UserId}}">{{this.Password}}</a>
+=======
+        <h3>Existing Users</h3>
+        <ul id="existing-users" class="list-group">
+          {{#each expenses.users}}
+          <li data-id="{{this.UserId}}" class="list-group-item">
+            <a href="users/{{this.UserId}}">{{this.password}}</a>
+>>>>>>> 25880987e754231659e88567585b015b523d66f2
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
