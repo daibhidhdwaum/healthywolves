@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
   var Bill = sequelize.define("Bill", {
-    Bill_Id: {
+    billId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
 
-    Total_BillItems: {
+    totalBillItems: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: true

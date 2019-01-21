@@ -2,18 +2,18 @@ var db = require("../models");
 
 // I'm just writing this here as a test
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Get all users for login check
-  app.get("/api/users", function (req, res) {
-    db.user.findAll({}).then(function (getUsers) {
+  app.get("/api/users", function(req, res) {
+    db.user.findAll({}).then(function(getUsers) {
       res.json(getUsers);
     });
   });
 
   // get all bills for a particular user (use on logged in page for particular user)
   // userID is optional so that all bills for all users can be pulled
-  app.get("/api/bills/:userID?", function (req, res) {
-    db.bill.findAll({}).then(function (userBills) {
+  app.get("/api/bills/:userID?", function(req, res) {
+    db.bill.findAll({}).then(function(userBills) {
       res.json(userBills);
     });
   });
