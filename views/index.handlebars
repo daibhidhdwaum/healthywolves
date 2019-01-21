@@ -10,19 +10,11 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-<<<<<<< HEAD
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each User}}
-          <li data-id="{{this.Password}}" class="list-group-item">
-            <a href="example/{{this.UserId}}">{{this.Password}}</a>
-=======
         <h3>Existing Users</h3>
         <ul id="existing-users" class="list-group">
           {{#each expenses.users}}
           <li data-id="{{this.UserId}}" class="list-group-item">
             <a href="users/{{this.UserId}}">{{this.password}}</a>
->>>>>>> 25880987e754231659e88567585b015b523d66f2
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}

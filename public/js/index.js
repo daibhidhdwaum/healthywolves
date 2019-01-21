@@ -1,14 +1,7 @@
 // Get references to page elements
-<<<<<<< HEAD
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-=======
 var $newUser = $("#new-user");
 var $submitBtn = $("#submit");
 var $existingUsers = $("#existing-user");
->>>>>>> 25880987e754231659e88567585b015b523d66f2
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -22,7 +15,7 @@ var API = {
       data: JSON.stringify(users)
     });
   },
-  getExamples: function () {
+  getExamples: function() {
     return $.ajax({
       url: "api/users",
       type: "GET"
@@ -37,21 +30,6 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-<<<<<<< HEAD
-var refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    var $examples = data.map(function (User) {
-      var $a = $("<a>")
-        .text(User.Password)
-        .attr("href", "/api/users/" + User.UserId);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": User.UserId
-        })
-        .append($a);
-=======
 // var refreshExamples = function() {
 //   API.getExamples().then(function(data) {
 //     var $examples = data.map(function(example) {
@@ -65,7 +43,6 @@ var refreshExamples = function () {
 //           "data-id": example.id
 //         })
 //         .append($a);
->>>>>>> 25880987e754231659e88567585b015b523d66f2
 
 //       var $button = $("<button>")
 //         .addClass("btn btn-danger float-right delete")
@@ -86,42 +63,21 @@ refreshExamples();
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 
-<<<<<<< HEAD
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
+var example = {
+  text: $newUser.val().trim()
+};
 
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-=======
-  var example = {
-    text: $newUser.val().trim()
-  };
+$newUser.val("");
 
-  // if (!(example.text && example.description)) {
-  //   alert("You must enter an example text and description!");
-  //   return;
-  // }
->>>>>>> 25880987e754231659e88567585b015b523d66f2
+// if (!(example.text && example.description)) {
+//   alert("You must enter an example text and description!");
+//   return;
+// }
 
 //   if (!(example.text && example.description)) {
 //     alert("You must enter an example text and description!");
 //     return;
 //   }
-
-<<<<<<< HEAD
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-=======
-  $newUser.val("");
-};
->>>>>>> 25880987e754231659e88567585b015b523d66f2
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
@@ -137,13 +93,5 @@ refreshExamples();
 // };
 
 // Add event listeners to the submit and delete buttons
-<<<<<<< HEAD
-
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-
-=======
 $submitBtn.on("click", handleFormSubmit);
 $existingUsers.on("click", ".delete", handleDeleteBtnClick);
->>>>>>> 25880987e754231659e88567585b015b523d66f2
