@@ -4,9 +4,22 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all users for login check
-  app.get("/api/users", function(req, res) {
-    db.User.findAll({}).then(function(getUsers) {
-      res.json(getUsers);
+  app.get("/api/users/", function(req, res) {
+    var userName = req.body.userName;
+    var Password = req.body.Password;
+    console.log(userName);
+    console.log(Password);
+    var condition = {
+      where: {
+        userName: userName,
+        Password: Password
+      }
+    };
+    db.User.findOne(condition).then(function(getUsers) {
+      if (!getUsers) {
+        res.status(404);
+      }
+      res.status(200);
     });
   });
 
@@ -32,7 +45,8 @@ module.exports = function(app) {
   // Create a new bill (for a specific user)
   app.post("/api/users", function(req, res) {
     db.User.create({
-      password: req.body
+      userName: req.body.userName,
+      Password: req.body.Password
     }).then(function(newUser) {
       res.json(newUser);
     });

@@ -5,11 +5,12 @@
     "database": "expenses",
     "host": "localhost",
     "port": 3306,
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorsAliases": false
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "rootroot",
     "database": "expenses",
     "host": "localhost",
     "port": 3306,

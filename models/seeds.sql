@@ -1,16 +1,9 @@
 -- //Users table
 
-<<<<<<< HEAD
-insert into expenses.users(Password,createdAt,updatedAt) values ('Manu',Now(),Now());
-insert into expenses.users(Password,createdAt,updatedAt) values ('Saryn',Now(),Now());
-insert into expenses.users(Password,createdAt,updatedAt) values ('Amanda',Now(),Now());
-insert into expenses.users(Password,createdAt,updatedAt) values ('David',Now(),Now());
-=======
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('101', 'Manu',Now(),Now());
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('102', 'Saryn',Now(),Now());
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('103', 'Amanda',Now(),Now());
-insert into expenses.users(UserId,Password,createdAt,updatedAt) values ('104', 'David',Now(),Now());
->>>>>>> 5d5d64483fab2bbee7c78a3d4df499525e05bda8
+insert into expenses.users(userName,Password,createdAt,updatedAt) values ('Manu','Manu',Now(),Now());
+insert into expenses.users(userName,Password,createdAt,updatedAt) values ('Saryn','Saryn',Now(),Now());
+insert into expenses.users(userName,Password,createdAt,updatedAt) values ('Amanda','Amanda',Now(),Now());
+insert into expenses.users(userName,Password,createdAt,updatedAt) values ('David','David',Now(),Now());
 
 -- //Bill table
 

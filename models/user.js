@@ -6,6 +6,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: false
+    },
     Password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,9 +19,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   User.associate = function(models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
-    User.hasMany(models.Bill, {
+    User.hasMany(models.Item, {
       onDelete: "cascade"
     });
   };

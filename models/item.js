@@ -6,7 +6,6 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-
     Store: {
       type: DataTypes.STRING,
       allowNull: false
@@ -31,5 +30,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+  Item.associate = function(models) {
+    Item.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Item;
 };
