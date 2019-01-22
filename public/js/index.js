@@ -4,7 +4,6 @@ $(document).ready(function () {
 
   // Add event listeners to both submits and the delete buttons
   $newUserSubmit.on("click", newUser);
-  //$loginBtn.on("click", logginUser);
   function newUser(event) {
     event.preventDefault();
     var newUser = {
@@ -27,7 +26,6 @@ $(document).ready(function () {
   }
 
   $loginBtn.on("click", LoginUser);
-  //$loginBtn.on("click", logginUser);
   function LoginUser() {
     event.preventDefault();
     var userName = $("#user-login")
@@ -41,8 +39,9 @@ $(document).ready(function () {
     var url = "/api/users/" + userName + "/" + Password;
     var jqxhr = $.get(url, function () {
       if (jqxhr.done() && (userName || "")) {
-        window.location = "/loggedIn";
         alert("Success");
+        var goToLogin = "/loggedIn/" + userName;
+        window.location = goToLogin;
       } else if (jqxhr.fail()) {
         alert("Invalid login.Try again");
       }
