@@ -37,11 +37,13 @@ $(document).ready(function () {
     console.log(userName);
     console.log(Password);
     var url = "/api/users/" + userName + "/" + Password;
-    var jqxhr = $.get(url, function () {
+    var jqxhr = $.get(url, function(data) {
       if (jqxhr.done() && (userName || "")) {
         alert("Success");
-        var goToLogin = "/loggedIn/" + userName;
+        var userid = data.userid;
+        var goToLogin = "/loggedIn/" + userid;
         window.location = goToLogin;
+        console.log("The user id is:" + userid);
       } else if (jqxhr.fail()) {
         alert("Invalid login.Try again");
       }

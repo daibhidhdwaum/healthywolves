@@ -4,7 +4,7 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Get all users for login check
-  app.get("/api/users/:userName/:Password", function (req, res) {
+  app.get("/api/users/:userName/:Password", function(req, res) {
     var userName = req.params.userName;
     var Password = req.params.Password;
     console.log(userName);
@@ -15,10 +15,12 @@ module.exports = function (app) {
         Password: Password
       }
     };
-    db.User.findOne(condition).then(function (getUsers) {
+    db.User.findOne(condition).then(function(getUsers) {
       if (getUsers) {
         console.log("User Found:");
-        res.status(200).send("User Found:");
+        //var userid = getUsers.UserId;
+        //console.log("The logged in user's id is:" + getUsers);
+        res.json(getUsers);
       } else {
         console.log("No such user:");
         res.status(404).send("No such user");
@@ -26,14 +28,11 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/loggedIn", function (req, res) {
-    app.get("/api/users/:UserName?", function (req, res) {
-      db.User.findAll().then(function (getUsers) {
-        res.json(getUsers);
-      });
+  app.get("/api/loggedIn/:UserName", function(req, res) {
+    db.User.findAll().then(function(getUsers) {
+      res.json(getUsers);
     });
   });
-
   // get all items for a particular user (use on logged in page for particular user)
   // optional user tag to pull data for all users to create graphs
   // optional type tag to pull data for various types from a user to create graphs
@@ -49,7 +48,7 @@ module.exports = function (app) {
     db.User.create({
       userName: req.body.userName,
       Password: req.body.Password
-    }).then(function (newUser) {
+    }).then(function(newUser) {
       if (newUser) {
         res.json(newUser);
       } else {
