@@ -4,7 +4,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all users for login check
-  app.get("/api/users/:userName/:Password", function(req, res) {
+  app.get("/api/users/:userName/:Password?", function(req, res) {
     var userName = req.params.userName;
     var Password = req.params.Password;
     console.log(userName);
