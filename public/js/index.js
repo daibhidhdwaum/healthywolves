@@ -1,36 +1,42 @@
-// Get references to page elements
-var $newUser = $("#new-user");
-var $submitBtn = $("#submit");
-var $existingUsers = $("#existing-users");
+$(document).ready(function() {
+  var $newUserSubmit = $("#new-user-submit"); // create new user submit button
+  var $loginBtn = $("#user-login-submit"); // user login submit button
 
-// The API object contains methods for each kind of request we'll make
-var API = {
+  //var $existingUsers = $("#existing-users");
+
+  // The API object contains methods for each kind of request we'll make
+  /*var API = {
   createUser: function(users) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/users",
+      url: "api/users/",
       data: JSON.stringify(users)
     });
   },
   getUsers: function() {
     return $.ajax({
-      url: "api/users",
+      url: "api/users/",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  logginUser: function() {
+    return $.ajax({
+      url: "api/users/",
+      type: "GET"
+    });
+  }
+  /* deleteExample: function(id) {
     return $.ajax({
       url: "api/users/" + id,
       type: "DELETE"
     });
-  }
-};
+  }*/
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
+  // refreshExamples gets new examples from the db and repopulates the list
+  /*var refreshExamples = function() {
   API.getUsers().then(function(data) {
     var $examples = data.map(function(example) {
       var $a = $("<a>").text(example.Password);
@@ -55,18 +61,59 @@ var refreshExamples = function() {
     $existingUsers.empty();
     $existingUsers.append($examples);
   });
-};
+};*/
 
-refreshExamples();
+  //refreshExamples();
+  // Add event listeners to both submits and the delete buttons
+  $newUserSubmit.on("click", newUser);
+  //$loginBtn.on("click", logginUser);
+  function newUser(event) {
+    event.preventDefault();
+    var newUser = {
+      userName: $("#new-user")
+        .val()
+        .trim(),
+      Password: $("#new-user-pass")
+        .val()
+        .trim()
+    };
+    console.log(newUser);
+    $.post("/api/users", newUser);
+    $("#new-user").val("");
+    $("#new-password").val("");
+    alert("User created successfully:");
+  }
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-
-var newUser = {
-  text: $newUser.val().trim()
-};
-
-$newUser.val("");
+  $loginBtn.on("click", LoginUser);
+  //$loginBtn.on("click", logginUser);
+  function LoginUser(event) {
+    event.preventDefault();
+    var LoginUser = {
+      userName: $("#user-login")
+        .val()
+        .trim(),
+      Password: $("#user-login-pass")
+        .val()
+        .trim()
+    };
+    console.log(LoginUser);
+    $.get("/api/users", LoginUser);
+    if (this.status === 200) {
+      alert("Login successful:");
+    } else {
+      alert("Try again to login");
+    }
+  }
+  /*var logginUser = function() {
+  API.getUsers().then(function() {
+    // if (){
+    // password check for login goes here. I assume this will use getUsers above to check the user database for a name match, and then if that succedds, check the password against password.
+    // if the check works, it will redirect to loggedin.handlebars
+    //if it fails, it should throw an alert (or even a modal) to try again and refresh the page.
+    // });
+    refreshExamples();
+  });
+};*/
 
 // if (!(example.text && example.description)) {
 //   alert("You must enter an example text and description!");
@@ -81,16 +128,32 @@ $newUser.val("");
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
 
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
+//   API.deleteExample(idToDelete).then(function() {
+//     refreshExamples();
+//   });
+// };
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$existingUsers.on("click", ".delete", handleDeleteBtnClick);
+
+// $deleteItem.on("click", ".delete", handleDeleteBtnClick);
+
+/*$(document).on("submit", "$submitBtn", Login);
+$newUser.on("click", "$newUser",createNewUser);
+
+function Login() {
+  console.log("Entered Login function");
+  event.preventdefault();
+  var uName = $username.val().trim();
+  console.log(uName);
+  var pwd = $password.val().trim();
+  console.log(pwd);
+}
+
+function createNewUser() {
+  console.log("Entered new user function:");
+}*/
+});
