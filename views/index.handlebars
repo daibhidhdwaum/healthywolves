@@ -2,14 +2,28 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
+
         <h1>Expense Tracker</h1>
+
         <form class="clearfix mb-4" action="POST">
+
           <div class="form-group">
             <label for="new-user">New User</label>
-            <input type="text" id="new-user" class="form-control" aria-describedby="example-text" placeholder="Enter Name">
+            <input type="text" id="new-user" class="form-control" aria-describedby="New User Name" placeholder="Enter Name">
+            <input type="text" id="new-user-pass" class="form-control" aria-describedby="New User Password" placeholder="Enter Password">
+            <button id="new-user-submit" class="btn btn-primary float-right">Create User</button>
           </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+
+        <form class="clearfix mb-4" action="GET">
+          <div class="form-group">
+            <label for="user-login">Existing User Login</label>
+            <input type="text" id="user-login" class="form-control" aria-describedby="Existing User Name" placeholder="Enter Name">
+            <input type="text" id="user-login-pass" class="form-control" aria-describedby="Login Password" placeholder="Enter Password">
+            <button id="user-login-submit" class="btn btn-primary float-right">Login user</button>
+          </div>
+        </form>
+
         <h3>Existing Users</h3>
         <ul id="existing-users" class="list-group">
           {{#each expenses.users}}
