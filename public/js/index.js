@@ -80,29 +80,49 @@ $(document).ready(function() {
     console.log(newUser);
     $.post("/api/users", newUser);
     $("#new-user").val("");
-    $("#new-password").val("");
-    alert("User created successfully:");
+    $("#new-user-pass").val("");
+    if (newUser) {
+      alert("User created successfully:");
+    } else {
+      alert("User already exists");
+    }
   }
 
   $loginBtn.on("click", LoginUser);
   //$loginBtn.on("click", logginUser);
   function LoginUser(event) {
     event.preventDefault();
-    var LoginUser = {
+    /* var LoginUser = {
       userName: $("#user-login")
         .val()
         .trim(),
       Password: $("#user-login-pass")
         .val()
         .trim()
-    };
-    console.log(LoginUser);
-    $.get("/api/users", LoginUser);
-    if (this.status === 200) {
-      alert("Login successful:");
-    } else {
-      alert("Try again to login");
-    }
+    };*/
+    var userName = $("#user-login")
+      .val()
+      .trim();
+    var Password = $("#user-login-pass")
+      .val()
+      .trim();
+    console.log(userName);
+    console.log(Password);
+    var url = "/api/users/" + userName + "/" + Password;
+    var jqxhr = $.get(url, function() {
+      if (jqxhr.done()) {
+        alert("Successfully logged in");
+      } else if (jqxhr.fail()) {
+        alert("Invalid login.Try again");
+      }
+      /*console.log("success");
+      jqxhr.done(function() {
+        alert("Successfully logged in");
+      });
+      jqxhr.fail(function() {
+        alert("Invalid login.Try again");
+      });*/
+    });
   }
   /*var logginUser = function() {
   API.getUsers().then(function() {
@@ -114,34 +134,32 @@ $(document).ready(function() {
     refreshExamples();
   });
 };*/
+  // if (!(example.text && example.description)) {
+  //   alert("You must enter an example text and description!");
+  //   return;
+  // }
 
-// if (!(example.text && example.description)) {
-//   alert("You must enter an example text and description!");
-//   return;
-// }
+  //   if (!(example.text && example.description)) {
+  //     alert("You must enter an example text and description!");
+  //     return;
+  //   }
 
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
+  // handleDeleteBtnClick is called when an example's delete button is clicked
+  // Remove the example from the db and refresh the list
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
+  // var handleDeleteBtnClick = function() {
+  //   var idToDelete = $(this)
+  //     .parent()
+  //     .attr("data-id");
 
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
+  //   API.deleteExample(idToDelete).then(function() {
+  //     refreshExamples();
+  //   });
+  // };
 
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
+  // $deleteItem.on("click", ".delete", handleDeleteBtnClick);
 
-
-// $deleteItem.on("click", ".delete", handleDeleteBtnClick);
-
-/*$(document).on("submit", "$submitBtn", Login);
+  /*$(document).on("submit", "$submitBtn", Login);
 $newUser.on("click", "$newUser",createNewUser);
 
 function Login() {

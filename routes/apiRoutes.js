@@ -4,9 +4,9 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all users for login check
-  app.get("/api/users/", function(req, res) {
-    var userName = req.body.userName;
-    var Password = req.body.Password;
+  app.get("/api/users/:userName/:Password", function(req, res) {
+    var userName = req.params.userName;
+    var Password = req.params.Password;
     console.log(userName);
     console.log(Password);
     var condition = {
@@ -16,10 +16,13 @@ module.exports = function(app) {
       }
     };
     db.User.findOne(condition).then(function(getUsers) {
-      if (!getUsers) {
-        res.status(404);
+      console.log(getUsers);
+      if (getUsers) {
+        res.json(getUsers);
+      } else {
+        console.log("No such user:");
+        res.status(404).send("No such user");
       }
-      res.status(200);
     });
   });
 
@@ -48,7 +51,12 @@ module.exports = function(app) {
       userName: req.body.userName,
       Password: req.body.Password
     }).then(function(newUser) {
-      res.json(newUser);
+      if (newUser) {
+        res.json(newUser);
+      } else {
+        console.log("User already exists:");
+        res.status(404).send("User already exists");
+      }
     });
   });
 
