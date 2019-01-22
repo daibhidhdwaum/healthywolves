@@ -16,24 +16,15 @@ module.exports = function(app) {
       }
     };
     db.User.findOne(condition).then(function(getUsers) {
-      console.log(getUsers);
       if (getUsers) {
-        res.json(getUsers);
+        console.log("User Found:");
+        res.status(200).send("User Found:");
       } else {
         console.log("No such user:");
         res.status(404).send("No such user");
       }
     });
   });
-
-  // get all bills for a particular user (use on logged in page for particular user)
-  // userID is optional so that all bills for all users can be pulled
-
-  // app.get("/api/bills/:userID?", function (req, res) {
-  //   db.bill.findAll({}).then(function (userBills) {
-  //     res.json(userBills);
-  //   });
-  // });
 
   // get all items for a particular user (use on logged in page for particular user)
   // optional user tag to pull data for all users to create graphs
@@ -60,10 +51,10 @@ module.exports = function(app) {
     });
   });
 
-  // Delete a bill (only for logged in user)
-  // app.delete("/api/bills/:id", function(req, res) {
-  //   db.bill.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.json(refreshPage);
-  //   });
-  // });
+  // Delete a item (only for logged in user)
+  app.delete("/api/item/:ItemId", function(req, res) {
+    db.Item.destroy({ where: { ItemId: req.params.ItemId } }).then(function() {
+      res.json(refreshPage);
+    });
+  });
 };

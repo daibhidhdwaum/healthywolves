@@ -2,8 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
+        <br><br>
         <h1>Expense Tracker</h1>
-        <form class="clearfix mb-4" action="POST">
+        <hr>
+        <br><br>
+        <form class="clearfix mb-4" style="width:60%" action="POST">
           <div class="form-group">
             <label for="new-user">New User</label>
             <input type="text" id="new-user" class="form-control" aria-describedby="New User Name" placeholder="Enter Name">
@@ -12,24 +15,16 @@
             <button id="new-user-submit" class="btn btn-primary float-right">Create User</button>
           </div>
         </form>
-        <form class="clearfix mb-4" action="GET">
+        <form class="clearfix mb-4" style="width:60%" action="GET">
           <div class="form-group">
             <label for="user-login">Existing User Login</label>
             <input type="text" id="user-login" class="form-control" aria-describedby="Existing User Name" placeholder="Enter Name">
-            <input type="password" id="user-login-pass" class="form-control" aria-describedby="Login Password" placeholder="Enter Password">
+            <input type="password" id="user-login-pass" class="form-control" aria-describedby="Login Password"
+              placeholder="Enter Password">
             <br>
             <button id="user-login-submit" class="btn btn-primary float-right">Login user</button>
           </div>
         </form>
-        <h3>Existing Users</h3>
-        <ul id="existing-users" class="list-group">
-          {{#each expenses.users}}
-          <li data-id="{{this.UserId}}" class="list-group-item">
-            <a href="users/{{this.UserId}}">{{this.password}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
       </div>
     </div>
   </div>
@@ -37,19 +32,16 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 
-{{!--<div id ="container">
-  <form id ="Login" method = "POST">
+{{!--<div id="container">
+  <form id="Login" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">
     <label for="password">Password:</label>
     <input type="password" id="password" name="password">
     <div id="lower">
       <br><br>
-        <a href="NewUser.html" id="new-user">New User</a>
-        <input type="submit" value ="Submit" id="submit">
-      </div>
+      <a href="NewUser.html" id="new-user">New User</a>
+      <input type="submit" value="Submit" id="submit">
+    </div>
   </form>
 </div>--}}
-
-
-  
