@@ -12,6 +12,7 @@
   {{!-- page content --}}
   <div class="container">
     <div class="row">
+<<<<<<< HEAD
       <div class="col">
         {{!-- input fields --}}
 
@@ -90,12 +91,39 @@
                 <a class="dropdown-item" href="#">Line Chart</a>
               </div>
             </div>
+=======
+      <div class="col-8 offset-2">
+        <br><br>
+        <h1>{{this.userName}}</h1>
+        <h2>This is our Home Page!</h2>
+        <br><br>
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="example-text">Example Text</label>
+            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+          </div>
+          <div class="form-group">
+            <label for="example-description">Example Description</label>
+            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+>>>>>>> ff588841ee41dcf70379418898a10016cd61c483
           </div>
         </form>
+<<<<<<< HEAD
         
         <div class="container">
         {{!-- charts --}}
         </div>
+=======
+        <h3>Existing Users</h3>
+        <ul id="existing-users" class="list-group">
+          {{#each expenses.users}}
+          <li data-id="{{this.UserId}}" class="list-group-item">
+            <a href="users/{{this.UserId}}">{{this.password}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
+>>>>>>> ff588841ee41dcf70379418898a10016cd61c483
       </div>
     </div>
 
@@ -103,4 +131,8 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<<<<<<< HEAD
 <script src="/js/index.js"></script>
+=======
+<script src="/js/loggedIn.js"></script>
+>>>>>>> ff588841ee41dcf70379418898a10016cd61c483
