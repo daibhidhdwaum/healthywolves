@@ -9,107 +9,188 @@
     </div>
   </div>
 
-  {{!-- page content --}}
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        {{!-- input fields --}}
+  {{!-- primary page content area --}}
+  <div class="row" id="mainBox">
+    {{!-- Left Side of top bar AKA input and items list --}}
+    <div class="col" id="mainColLeft">
 
-        <div class="row">
-          <form>
+      {{!-- User input fields for items --}}
+      <div class="row" id="topLeftRow">
+
+        <div class="col mx-5 p-0">
+          <form id="newItemCreateForm">
             <div class="row">
-              <div class="dropdown col">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Want</a>
-                  <a class="dropdown-item" href="#">Need</a>
+
+              <div class="col" id="item-price">
+                <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+              </div>
+
+
+              <div class="col" id="item-type">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="wantNeed" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Type
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="wantNeed">
+                    <a class="dropdown-item" href="#">Want</a>
+                    <a class="dropdown-item" href="#">Need</a>
+                  </div>
                 </div>
               </div>
 
-              <div class="dropdown col">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Rent</a>
-                  <a class="dropdown-item" href="#">Groceries</a>
-                  <a class="dropdown-item" href="#">Car Loan</a>
+              <div class="col" id="item-category">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Category
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="category">
+                    <a class="dropdown-item" href="#">Rent</a>
+                    <a class="dropdown-item" href="#">Groceries</a>
+                    <a class="dropdown-item" href="#">Debt</a>
+                  </div>
                 </div>
               </div>
 
               <div class="col">
-                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
               </div>
-
-              <div class="col">
-                <input class="btn btn-primary" type="submit" value="Submit">
-              </div>
-
             </div>
           </form>
-
         </div>
 
-        {{!-- inputs displayed --}}
-        <div class="row">
-          {{!-- generated list of purchase costs --}}
-          <ul>
-            {{#each examples}}
-            <li data-id="{{this.id}}" class="list-group-item">
-              <a href="example/{{this.id}}">{{this.text}}</a>
-              <button class="btn btn-danger delete">ｘ</button>
-            </li>
-            {{/each}}
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-            <li>Four</li>
-            <li>Five</li>
-          </ul>
+      </div>
+
+      {{!-- Interactive Display of users items in database w/ handlebars --}}
+      <div class="row" id="botLeftRow">
+        <div class="col">
+          <div class="container m-3 p-2">
+            {{!-- handlebars from database of users items with ability to delete from database --}}
+            <h3>User Items</h3>
+            <ul id="user-items" class="list-group">
+              {{#each userData}}
+              <li data-id="{{this.itemId}}" class="list-group-item my-2">
+                <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
+                </strong>{{this.Category}} <br> <strong>Created on: </strong> {{this.createdAt}}
+                <button class="btn btn-danger float-right delete">ｘ</button>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
         </div>
       </div>
+      {{!-- End of main left side column --}}
     </div>
 
-    <div class="col">
-      <div class="row">
+    {{!-- Start of main right side column --}}
+    <div class="col" id="mainColRight">
+
+      {{!-- User selection fields for modifying graphs --}}
+      <div class="row" id="topRightRow">
+
         {{!-- chart dropdown --}}
-        <form>
-          <div class="row">
-            <div class="dropdown col-2">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Dropdown button
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Bar Chart</a>
-                <a class="dropdown-item" href="#">Pie Chart</a>
-                <a class="dropdown-item" href="#">Line Chart</a>
+        <div class="col">
+          <form>
+            <div class="row">
+              <div class="dropdown col-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Chart Selection
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Bar Chart</a>
+                  <a class="dropdown-item" href="#">Pie Chart</a>
+                  <a class="dropdown-item" href="#">Line Chart</a>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
-        
-        <div class="container">
-        {{!-- charts --}}
+          </form>
         </div>
-        <h3>Existing Users</h3>
-        <ul id="existing-users" class="list-group">
-          {{#each userData}}
-          <li data-id="{{this.itemId}}" class="list-group-item">
-            <a href="users/{{this.itemId}}">{{this.Store}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+
+        {{!-- chart dropdown --}}
+        <div class="col">
+          <form>
+            <div class="row">
+              <div class="dropdown col-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Chart Selection
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Bar Chart</a>
+                  <a class="dropdown-item" href="#">Pie Chart</a>
+                  <a class="dropdown-item" href="#">Line Chart</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        {{!-- chart dropdown --}}
+        <div class="col">
+          <form>
+            <div class="row">
+              <div class="dropdown col-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Chart Selection
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Bar Chart</a>
+                  <a class="dropdown-item" href="#">Pie Chart</a>
+                  <a class="dropdown-item" href="#">Line Chart</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
       </div>
+
+      {{!-- Box to display graphs--}}
+
+      <div class="row" id="botLeftRow">
+        <div class="col">
+
+          <div class="container m-3 p-2">
+            {{!-- this is where the charts display --}}
+            <img src="https://picsum.photos/550/400" alt="placeholder for charts display">
+          </div>
+
+        </div>
+      </div>
+
     </div>
+
 
   </div>
 </div>
+
+{{!-- saved code --}}
+
+{{!-- <ul>
+  {{#each items}}
+  <li data-id="{{this.id}}" class="list-group-item">
+    <a href="example/{{this.id}}">{{this.text}}</a>
+    <button class="btn btn-danger delete">ｘ</button>
+  </li>
+  {{/each}}
+</ul> --}}
+
+
+{{!-- saved code --}}
+
+{{!-- <h3>Existing Users</h3>
+<ul id="existing-users" class="list-group">
+  {{#each userData}}
+  <li data-id="{{this.itemId}}" class="list-group-item">
+    <a href="users/{{this.itemId}}">{{this.Store}}</a>
+    <button class="btn btn-danger float-right delete">ｘ</button>
+  </li>
+  {{/each}}
+</ul> --}}
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/loggedIn.js"></script>
