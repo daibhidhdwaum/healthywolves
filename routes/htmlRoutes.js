@@ -6,6 +6,10 @@ module.exports = function(app) {
     res.render("index");
   });
 
+  app.get("/loggedIn", function (req, res) {
+    res.render("loggedIn");
+  });
+
   // Load example page and pass in an example by id
   app.get("/loggedIn/:userid", function(req, res) {
     console.log(req.params.userid);
