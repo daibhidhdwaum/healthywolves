@@ -2,15 +2,26 @@
   line-height: 2.5;
 } */
 
-/* *{
+*{
   background-color: lightgrey;
-} */
+}
 
 .jumbotron{
   background-color: black;
 }
 
+.header-background, .header-background-2 {
+  background-color: black;
+}
+
 h1 {
   font-family: 'Oswald', sans-serif;
+  color: lightgrey;
+  background-color: black;
+  text-decoration: underline;
+}
+
+.btn {
+  background-color: black;
   color: lightgrey;
 }
