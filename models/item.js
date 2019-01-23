@@ -6,24 +6,13 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    Store: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    itemName: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    DOP: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
     Price: {
       type: DataTypes.FLOAT,
       allowNull: false
     },
-    TYPE: {
-      type: DataTypes.STRING
+    Typeof: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     Category: {
       type: DataTypes.STRING,

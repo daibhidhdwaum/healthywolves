@@ -2,8 +2,8 @@ var db = require("../models");
 
 // I'm just writing this here as a test
 
-module.exports = function (app) {
-  // Get all users for login check
+module.exports = function(app) {
+  // Login and Password Check for index.handlebars
   app.get("/api/users/:userName/:Password", function(req, res) {
     var userName = req.params.userName;
     var Password = req.params.Password;
@@ -28,6 +28,7 @@ module.exports = function (app) {
     });
   });
 
+  // generates custom url for loggedIn.handlebars and passes it the user table reference
   app.get("/api/loggedIn/:userid", function(req, res) {
     var userId = req.param.userid;
     console.log(userId);
@@ -40,6 +41,7 @@ module.exports = function (app) {
       res.json(getUsers);
     });
   });
+
   // get all items for a particular user (use on logged in page for particular user)
   // optional user tag to pull data for all users to create graphs
   // optional type tag to pull data for various types from a user to create graphs
@@ -50,8 +52,8 @@ module.exports = function (app) {
   //   });
   // });
 
-  // Create a new bill (for a specific user)
-  app.post("/api/users", function (req, res) {
+  // Create a new user
+  app.post("/api/users", function(req, res) {
     db.User.create({
       userName: req.body.userName,
       Password: req.body.Password
@@ -65,9 +67,31 @@ module.exports = function (app) {
     });
   });
 
+  // Create a new item (only for logged in user)
+  app.post("/api/items/:UserUserId/:Price/:Typeof/:Category", function(
+    req,
+    res
+  ) {
+    db.Item.create(
+      {
+        where: {
+          UserUserId: userData.UserUserId
+        }
+      },
+      {
+        Price: req.body.Price,
+        Typeof: req.body.Typeof,
+        Category: req.body.Category
+      }
+    ).then(function(newItem) {
+      console.log(newItem);
+      res.status(404).send("Item Created");
+    });
+  });
+
   // Delete a item (only for logged in user)
-  app.delete("/api/item/:ItemId", function (req, res) {
-    db.Item.destroy({ where: { ItemId: req.params.ItemId } }).then(function () {
+  app.delete("/api/items/:ItemId", function(req, res) {
+    db.Item.destroy({ where: { ItemId: req.params.ItemId } }).then(function() {
       res.json(refreshPage);
     });
   });
