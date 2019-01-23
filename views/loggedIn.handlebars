@@ -18,29 +18,34 @@
       <div class="row" id="topLeftRow">
 
         <div class="col mx-5 p-0">
-          <form>
+          <form id="newItemCreateForm">
             <div class="row">
-              <div class="col">
+
+              <div class="col" id="item-price">
+                <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+              </div>
+
+
+              <div class="col" id="item-type">
                 <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="wantNeed" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Type
                   </button>
                   <div class="dropdown-menu" aria-labelledby="wantNeed">
                     <a class="dropdown-item" href="#">Want</a>
                     <a class="dropdown-item" href="#">Need</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </div>
               </div>
 
-              <div class="col">
+              <div class="col" id="item-category">
                 <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Categorey
+                    Category
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="wantNeed">
+                  <div class="dropdown-menu" aria-labelledby="category">
                     <a class="dropdown-item" href="#">Rent</a>
                     <a class="dropdown-item" href="#">Groceries</a>
                     <a class="dropdown-item" href="#">Debt</a>
@@ -49,11 +54,7 @@
               </div>
 
               <div class="col">
-                <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-              </div>
-
-              <div class="col">
-                <input class="btn btn-primary" type="submit" value="Add Item">
+                <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
               </div>
             </div>
           </form>
@@ -67,7 +68,7 @@
           <div class="container m-3 p-2">
             {{!-- handlebars from database of users items with ability to delete from database --}}
             <h3>User Items</h3>
-            <ul id="existing-users" class="list-group">
+            <ul id="user-items" class="list-group">
               {{#each userData}}
               <li data-id="{{this.itemId}}" class="list-group-item my-2">
                 <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
@@ -169,7 +170,7 @@
 {{!-- saved code --}}
 
 {{!-- <ul>
-  {{#each examples}}
+  {{#each items}}
   <li data-id="{{this.id}}" class="list-group-item">
     <a href="example/{{this.id}}">{{this.text}}</a>
     <button class="btn btn-danger delete">ｘ</button>
