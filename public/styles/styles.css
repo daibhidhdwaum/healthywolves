@@ -1,17 +1,16 @@
-/*.list-group-item {
+ /* .list-group-item {
   line-height: 2.5;
-}*/
+} */
+
+/* *{
+  background-color: lightgrey;
+} */
+
+.jumbotron{
+  background-color: black;
+}
 
 h1 {
   font-family: 'Oswald', sans-serif;
-}
-
-body{
-  background-color: red;
-}
-
-#Login{
-
-  margin:100px;
-
+  color: lightgrey;
 }
