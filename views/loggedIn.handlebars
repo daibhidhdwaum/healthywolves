@@ -1,31 +1,104 @@
 <div id="home">
-  <div class="container">
+
+  {{!-- header --}}
+  <div class="jumbotron">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+      <div class="col offset-5">
+        <h1>Expense Tracker</h1>
       </div>
     </div>
+  </div>
+
+  {{!-- page content --}}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {{!-- input fields --}}
+
+        <div class="row">
+          <form>
+            <div class="row">
+              <div class="dropdown col">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Want</a>
+                  <a class="dropdown-item" href="#">Need</a>
+                </div>
+              </div>
+
+              <div class="dropdown col">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Rent</a>
+                  <a class="dropdown-item" href="#">Groceries</a>
+                  <a class="dropdown-item" href="#">Car Loan</a>
+                </div>
+              </div>
+
+              <div class="col">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+              </div>
+
+              <div class="col">
+                <input class="btn btn-primary" type="submit" value="Submit">
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+
+        {{!-- inputs displayed --}}
+        <div class="row">
+          {{!-- generated list of purchase costs --}}
+          <ul>
+            {{#each examples}}
+            <li data-id="{{this.id}}" class="list-group-item">
+              <a href="example/{{this.id}}">{{this.text}}</a>
+              <button class="btn btn-danger delete">ｘ</button>
+            </li>
+            {{/each}}
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+            <li>Four</li>
+            <li>Five</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        {{!-- chart dropdown --}}
+        <form>
+          <div class="row">
+            <div class="dropdown col-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Bar Chart</a>
+                <a class="dropdown-item" href="#">Pie Chart</a>
+                <a class="dropdown-item" href="#">Line Chart</a>
+              </div>
+            </div>
+          </div>
+        </form>
+        
+        <div class="container">
+        {{!-- charts --}}
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
