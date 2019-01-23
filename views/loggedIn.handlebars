@@ -20,41 +20,41 @@
         <div class="col mx-5 p-0">
           <form>
             <div class="row">
-            <div class="col">
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Type
-                </button>
-                <div class="dropdown-menu" aria-labelledby="wantNeed">
-                  <a class="dropdown-item" href="#">Want</a>
-                  <a class="dropdown-item" href="#">Need</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+              <div class="col">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Type
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="wantNeed">
+                    <a class="dropdown-item" href="#">Want</a>
+                    <a class="dropdown-item" href="#">Need</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col">
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Categorey
-                </button>
-                <div class="dropdown-menu" aria-labelledby="wantNeed">
-                  <a class="dropdown-item" href="#">Rent</a>
-                  <a class="dropdown-item" href="#">Groceries</a>
-                  <a class="dropdown-item" href="#">Debt</a>
+              <div class="col">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categorey
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="wantNeed">
+                    <a class="dropdown-item" href="#">Rent</a>
+                    <a class="dropdown-item" href="#">Groceries</a>
+                    <a class="dropdown-item" href="#">Debt</a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col">
-              <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-            </div>
+              <div class="col">
+                <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+              </div>
 
-            <div class="col">
-              <input class="btn btn-primary" type="submit" value="Add Item">
-            </div>
+              <div class="col">
+                <input class="btn btn-primary" type="submit" value="Add Item">
+              </div>
             </div>
           </form>
         </div>
@@ -69,8 +69,9 @@
             <h3>User Items</h3>
             <ul id="existing-users" class="list-group">
               {{#each userData}}
-              <li data-id="{{this.itemId}}" class="list-group-item">
-                <a href="users/{{this.itemId}}">{{this.Store}}</a>
+              <li data-id="{{this.itemId}}" class="list-group-item my-2">
+                <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
+                </strong>{{this.Category}} <br> <strong>Created on: </strong> {{this.createdAt}}
                 <button class="btn btn-danger float-right delete">ｘ</button>
               </li>
               {{/each}}
