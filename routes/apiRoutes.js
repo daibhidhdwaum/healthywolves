@@ -37,20 +37,11 @@ module.exports = function(app) {
         UserUserId: userId
       }
     };
-    db.Item.findAll(condition).then(function(getUsers) {
-      res.json(getUsers);
+    // passes items for that user to the loggedIn page
+    db.Item.findAll(condition).then(function(getItems) {
+      res.json(getItems);
     });
   });
-
-  // get all items for a particular user (use on logged in page for particular user)
-  // optional user tag to pull data for all users to create graphs
-  // optional type tag to pull data for various types from a user to create graphs
-
-  // app.get("/api/items/:userID?/:type?", function(req, res) {
-  //   db.item.findAll({}).then(function(userBills) {
-  //     res.json(userBills);
-  //   });
-  // });
 
   // Create a new user
   app.post("/api/users", function(req, res) {
@@ -75,7 +66,7 @@ module.exports = function(app) {
     db.Item.create(
       {
         where: {
-          UserUserId: userData.UserUserId
+          UserUserId: req.body.UserUserId
         }
       },
       {
@@ -85,14 +76,14 @@ module.exports = function(app) {
       }
     ).then(function(newItem) {
       console.log(newItem);
-      res.status(404).send("Item Created");
+      res.status(200).send("Item Created");
     });
   });
 
   // Delete a item (only for logged in user)
-  app.delete("/api/items/:ItemId", function(req, res) {
-    db.Item.destroy({ where: { ItemId: req.params.ItemId } }).then(function() {
-      res.json(refreshPage);
+  app.delete("/loggedIn/api/items/:itemId", function(req, res) {
+    db.Item.destroy({ where: { itemId: req.params.itemId } }).then(function() {
+      res.status(200).send("Item Destroyed");
     });
   });
 };
