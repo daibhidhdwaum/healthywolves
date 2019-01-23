@@ -7,10 +7,9 @@ module.exports = function (app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/loggedIn/:userName", function (req, res) {
-    db.User.findOne({ where: { userName: req.params.userName } }).then(function (
-      currentUser
-    ) {
+  app.get("/loggedIn/:userid", function(req, res) {
+    db.Item.findAll({}).then(function(
+     currentUser    ) {
       res.render("loggedIn", currentUser);
     });
   });

@@ -28,8 +28,15 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/loggedIn/:UserName", function(req, res) {
-    db.User.findAll().then(function(getUsers) {
+  app.get("/api/loggedIn/:userid", function(req, res) {
+    var userId = req.param.userid;
+    console.log(userId);
+    var condition = {
+      where: {
+        UserUserId: userId
+      }
+    };
+    db.Item.findAll(condition).then(function(getUsers) {
       res.json(getUsers);
     });
   });
