@@ -17,41 +17,44 @@
       {{!-- User input fields for items --}}
       <div class="row" id="topLeftRow">
 
-        <div class="container">
+        <div class="col mx-5 p-0">
           <form>
+            <div class="row">
             <div class="col">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+                  Type
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" aria-labelledby="wantNeed">
                   <a class="dropdown-item" href="#">Want</a>
                   <a class="dropdown-item" href="#">Need</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </div>
             </div>
 
             <div class="col">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="wantNeed" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+                  Categorey
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" aria-labelledby="wantNeed">
                   <a class="dropdown-item" href="#">Rent</a>
                   <a class="dropdown-item" href="#">Groceries</a>
-                  <a class="dropdown-item" href="#">Car Loan</a>
+                  <a class="dropdown-item" href="#">Debt</a>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+              <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
             </div>
 
             <div class="col">
-              <input class="btn btn-primary" type="submit" value="Submit">
+              <input class="btn btn-primary" type="submit" value="Add Item">
+            </div>
             </div>
           </form>
         </div>
