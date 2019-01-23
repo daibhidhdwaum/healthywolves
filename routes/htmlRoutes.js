@@ -6,8 +6,22 @@ module.exports = function(app) {
     res.render("index");
   });
 
+  app.get("/loggedIn", function (req, res) {
+    res.render("loggedIn");
+  });
+
   // Load example page and pass in an example by id
+
+  app.get("/user/:id", function (req, res) {
+    db.user.findOne({ where: { id: req.params.id } }).then(function (UserId) {
+      res.render("loggedIn", {
+        UserId: UserId,
+        bill: bill,
+        item: item
+      });
+
   app.get("/loggedIn/:userid", function(req, res) {
+
     console.log(req.params.userid);
     db.Item.findAll({
       where: {
@@ -17,6 +31,11 @@ module.exports = function(app) {
       console.log(userData);
       var dataObj = {userData: userData};
       res.render("loggedIn", dataObj);
+
+    db.Item.findAll({}).then(function(
+     currentUser    ) {
+      res.render("loggedIn", currentUser);
+
     });
   });
 
