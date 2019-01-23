@@ -40,10 +40,10 @@ $(document).ready(function () {
     var jqxhr = $.get(url, function(data) {
       if (jqxhr.done() && (userName || "")) {
         alert("Success");
-        var userid = data.userid;
+        var userid = data.UserId;
         var goToLogin = "/loggedIn/" + userid;
-        window.location = goToLogin;
         console.log("The user id is:" + userid);
+        window.location = goToLogin;
       } else if (jqxhr.fail()) {
         alert("Invalid login.Try again");
       }

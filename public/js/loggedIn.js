@@ -6,7 +6,7 @@ $(document).ready(function() {
   var API = {
     getUsers: function() {
       return $.ajax({
-        url: "/api/loggedIn/:userName",
+        url: "/api/loggedIn/",
         type: "GET"
       });
     },
