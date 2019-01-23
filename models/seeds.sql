@@ -10,5 +10,5 @@ insert into expenses.users(userName,Password,createdAt,updatedAt) values ('David
  insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('Walmart','2019-01-18','1000','Need','Groceries',Now(),Now(),'1');
  insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('BestBuy','2019-01-18','500','Want','Electronics',Now(),Now(),'2');
  insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('Walmart','2019-01-18','300','Want','Accessories',Now(),Now(),'3');
- insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('Costco','2019-01-18','10','Want','Gardening',Now(),Now(),'14');
- insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('Walmart','2019-01-18','90','Need','Groceries',Now(),Now(),'9');
+ insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('Costco','2019-01-18','10','Want','Gardening',Now(),Now(),'2');
+ insert into expenses.items(Store,DOP,Price,Type,Category,createdAt,updatedAt,UserUserId) values ('Walmart','2019-01-18','90','Need','Groceries',Now(),Now(),'1');

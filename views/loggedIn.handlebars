@@ -116,9 +116,9 @@
 =======
         <h3>Existing Users</h3>
         <ul id="existing-users" class="list-group">
-          {{#each expenses.users}}
-          <li data-id="{{this.UserId}}" class="list-group-item">
-            <a href="users/{{this.UserId}}">{{this.password}}</a>
+          {{#each userData}}
+          <li data-id="{{this.itemId}}" class="list-group-item">
+            <a href="users/{{this.itemId}}">{{this.Store}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}

@@ -18,6 +18,10 @@ $(document).ready(function() {
     }
   };
 
+  $(document).on("click", ".delete", function() {
+    API.deleteExample($(this).attr("data-id"));
+  });
+
   // refreshExamples gets new examples from the db and repopulates the list
   var refreshExamples = function() {
     API.getUsers().then(function(data) {
