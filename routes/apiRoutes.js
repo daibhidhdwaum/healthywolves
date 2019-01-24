@@ -37,6 +37,7 @@ module.exports = function(app) {
         UserUserId: userId
       }
     };
+    res.json(UserUserId);
     // passes items for that user to the loggedIn page
     db.Item.findAll(condition).then(function(getItems) {
       res.json(getItems);
@@ -58,23 +59,17 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new item (only for logged in user)
-  app.post("/api/items/:UserUserId/:Price/:Typeof/:Category", function(
+  // Create a new item
+  app.post("/api/items/:Price/:Typeof/:Category/:UserUserId", function(
     req,
     res
   ) {
-    db.Item.create(
-      {
-        where: {
-          UserUserId: req.body.UserUserId
-        }
-      },
-      {
-        Price: req.body.Price,
-        Typeof: req.body.Typeof,
-        Category: req.body.Category
-      }
-    ).then(function(newItem) {
+    db.Item.create({
+      Price: req.body.Price,
+      Typeof: req.body.Typeof,
+      Category: req.body.Category,
+      UserUserId: req.body.UserUserId
+    }).then(function(newItem) {
       console.log(newItem);
       res.status(200).send("Item Created");
     });
