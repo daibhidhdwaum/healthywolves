@@ -1,12 +1,19 @@
 <div id="home">
+
+  {{!-- header --}}
+  <div class="jumbotron">
+    <div class="row header-background">
+      <div class="col offset-5 header-background-2">
+        <h1>flow</h1>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <br><br>
-        <h1>Expense Tracker</h1>
-        <hr>
-        <br><br>
-        <form class="clearfix mb-4" style="width:60%" action="POST">
+        <form class="clearfix mx-auto" style="width:60%" action="POST">
           <div class="form-group">
             <label for="new-user">New User</label>
             <input type="text" id="new-user" class="form-control" aria-describedby="New User Name" placeholder="Enter Name">
@@ -15,7 +22,7 @@
             <button id="new-user-submit" class="btn btn-primary float-right">Create User</button>
           </div>
         </form>
-        <form class="clearfix mb-4" style="width:60%" action="GET">
+        <form class="clearfix mx-auto" style="width:60%" action="GET">
           <div class="form-group">
             <label for="user-login">Existing User Login</label>
             <input type="text" id="user-login" class="form-control" aria-describedby="Existing User Name" placeholder="Enter Name">
@@ -29,6 +36,7 @@
     </div>
   </div>
 </div>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 

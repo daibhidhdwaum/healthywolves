@@ -1,28 +1,35 @@
 /* eslint-disable linebreak-style */
 $(document).ready(function() {
-  var $existingUsers = $("#existing-users");
+  var $existingItems = $("#user-items"); // list of current users items box reference
+  var $newItemSubmit = $("#new-item-submit"); // create item for current user button reference
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    getUsers: function() {
+    getItems: function() {
       return $.ajax({
         url: "/api/loggedIn/",
         type: "GET"
       });
     },
-    deleteExample: function(id) {
+    createItem: function() {
       return $.ajax({
-        url: "api/users/" + id,
+        url: "/api/items/",
+        type: "POST"
+      });
+    },
+    deleteItem: function(itemId) {
+      return $.ajax({
+        url: "api/items/" + itemId,
         type: "DELETE"
       });
     }
   };
 
-  // refreshExamples gets new examples from the db and repopulates the list
-  var refreshExamples = function() {
-    API.getUsers().then(function(data) {
-      var $examples = data.map(function(userList) {
-        var $a = $("<a>").text(userList.userName);
+  // refreshItems gets new items from the db and repopulates the list
+  var refreshItems = function() {
+    API.getItems().then(function(data) {
+      var $items = data.map(function(itemList) {
+        var $a = $("<a>").text(itemList.itemId);
 
         var $li = $("<li>")
           .attr({
@@ -39,9 +46,45 @@ $(document).ready(function() {
         return $li;
       });
 
-      $existingUsers.empty();
-      $existingUsers.append($examples);
+      $existingItems.empty();
+      $existingItems.append($items);
     });
   };
-  refreshExamples();
+
+  // delete item from user including from the database
+  // still bugged at this time
+  $(document).on("click", ".delete", function() {
+    API.deleteItem($(this).attr("data-id"));
+    refreshItems();
+  });
+
+  refreshItems();
+
+  // create new item for current user
+  $newItemSubmit.on("click", newItem);
+  function newItem(event) {
+    event.preventDefault();
+    var newItem = {
+      Price: $("#item-price")
+        .val()
+        .trim(),
+      Typeof: $("#item-type")
+        .val()
+        .trim(),
+      Category: $("#item-category")
+        .val()
+        .trim()
+    };
+    console.log(newItem);
+    var currentUser = "1";
+    $.post("/api/items/" + currentUser, newItem);
+    // $("#item-price").val("");
+    // $("#item-type").val("");
+    // $("#item-category").val("");
+    if (newItem) {
+      alert("Item created successfully");
+    } else {
+      alert("Item creation failed");
+    }
+  }
 });
