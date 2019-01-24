@@ -2,9 +2,11 @@
   line-height: 2.5;
 } */
 
-/* *{
-  background-color: lightgrey;
-} */
+body{
+  /*background-image: url("/Images/Bill2.jpg");*/
+  background-color:powderblue;
+  
+} 
 
 .jumbotron{
   background-color: black;
@@ -12,5 +14,15 @@
 
 h1 {
   font-family: 'Oswald', sans-serif;
-  color: lightgrey;
+  color:red;
+  font-size: 40px;
+  
 }
+.img{
+
+  width:10px;
+  height:10px;
+  
+}
+
+

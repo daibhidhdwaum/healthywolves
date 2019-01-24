@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var $newUserSubmit = $("#new-user-submit"); // create new user submit button
   var $loginBtn = $("#user-login-submit"); // user login submit button
 
