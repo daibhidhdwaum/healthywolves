@@ -11,9 +11,10 @@ $(document).ready(function() {
         type: "GET"
       });
     },
-    createItem: function() {
+    createItem: function(insertItem) {
       return $.ajax({
         url: "/api/items/",
+        data: insertItem,
         type: "POST"
       });
     },
@@ -54,7 +55,11 @@ $(document).ready(function() {
   // delete item from user including from the database
   // still bugged at this time
   $(document).on("click", ".delete", function() {
-    API.deleteItem($(this).attr("data-id"));
+    console.log("Entered Delete function:");
+    var itemId = $(this).attr("data-id");
+    console.log($(this));
+    console.log(itemId);
+    API.deleteItem(itemId);
     refreshItems();
   });
 
@@ -70,7 +75,7 @@ $(document).ready(function() {
     var UserUserId = url.substr(url.length - 1);
     // var UserUserId = parseFloat(UserId);
     // build url for api insertion
-    var createItem = {
+    var insertItem = {
       Price: $("#item-price")
         .val()
         .trim(),
@@ -79,9 +84,16 @@ $(document).ready(function() {
         .trim(),
       Category: $("#item-category")
         .val()
-        .trim()
+        .trim(),
+      UserUserId: UserUserId
     };
-    $.post("/api/items/", createItem + "/" + UserUserId);
+    console.log(insertItem);
+    //console.log("User id is " + UserUserId);
+    // var url = "/api/items/" + createItem;
+    //console.log("Url is :" + url);
+
+    /*$.post("/api/items", createItem);*/
+    API.createItem(insertItem);
     $("#item-price").val("");
     $("#item-type").val("");
     $("#item-category").val("");
