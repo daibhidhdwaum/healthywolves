@@ -21,13 +21,12 @@
           <form id="newItemCreateForm">
             <div class="row">
 
-              <div class="col" id="item-price">
-                <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+              <div class="col" >
+                <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
               </div>
 
-
-              <div class="col" id="item-type">
-                <div class="dropdown">
+              <div class="col">
+                {{!-- <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="wantNeed" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Type
@@ -36,11 +35,13 @@
                     <a class="dropdown-item" href="#">Want</a>
                     <a class="dropdown-item" href="#">Need</a>
                   </div>
-                </div>
+                </div> --}}
+                <input type="text" id="item-type" class="form-control" aria-label="item type">
+
               </div>
 
-              <div class="col" id="item-category">
-                <div class="dropdown">
+              <div class="col" >
+                {{!-- <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Category
@@ -50,13 +51,15 @@
                     <a class="dropdown-item" href="#">Groceries</a>
                     <a class="dropdown-item" href="#">Debt</a>
                   </div>
-                  
-                </div>
+                </div> --}}
+                <input type="text" id="item-category" class="form-control" aria-label="item category">
+
               </div>
 
               <div class="col">
                 <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
               </div>
+
             </div>
           </form>
         </div>
