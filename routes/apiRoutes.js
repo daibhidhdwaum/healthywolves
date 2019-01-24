@@ -60,10 +60,16 @@ module.exports = function(app) {
   });
 
   // Create a new item
-  app.post("/api/items/:Price/:Typeof/:Category/:UserUserId", function(
-    req,
-    res
-  ) {
+  app.post("/api/items", function(req, res) {
+    var Price = req.body.Price;
+    var TypeOf = req.body.Typeof;
+    var Category = req.body.Category;
+    var UserUserId = req.body.UserUserId;
+    console.log("Price is " + Price);
+    console.log("Type of " + TypeOf);
+    console.log("Category " + Category);
+    console.log("UserUserId " + UserUserId);
+
     db.Item.create({
       Price: req.body.Price,
       Typeof: req.body.Typeof,
