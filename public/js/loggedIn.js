@@ -64,7 +64,13 @@ $(document).ready(function() {
   $newItemSubmit.on("click", newItem);
   function newItem(event) {
     event.preventDefault();
-    var newItem = {
+    // dirty way to get userId
+    var url = window.location.href;
+    alert(url);
+    var UserUserId = url.substr(url.length - 1);
+    // var UserUserId = parseFloat(UserId);
+    // build url for api insertion
+    var createItem = {
       Price: $("#item-price")
         .val()
         .trim(),
@@ -75,16 +81,9 @@ $(document).ready(function() {
         .val()
         .trim()
     };
-    console.log(newItem);
-    var currentUser = "1";
-    $.post("/api/items/" + currentUser, newItem);
-    // $("#item-price").val("");
-    // $("#item-type").val("");
-    // $("#item-category").val("");
-    if (newItem) {
-      alert("Item created successfully");
-    } else {
-      alert("Item creation failed");
-    }
+    $.post("/api/items/", createItem + "/" + UserUserId);
+    $("#item-price").val("");
+    $("#item-type").val("");
+    $("#item-category").val("");
   }
 });
