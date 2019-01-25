@@ -87,4 +87,73 @@ module.exports = function(app) {
       res.status(200).send("Item Destroyed");
     });
   });
+
+  // Bar Graph API Call (aka Month to Month total spending)
+  app.get("/api/barGraph/:UserUserId", function(req, res) {
+    var UserUserId = req.params.UserUserId;
+    var condition = {
+      include: {
+        Price: true,
+        where: {
+          UserUserId: UserUserId
+        },
+        group: [sequelize.fn("date_trunc", "month", sequelize.col("createdAt"))]
+      }
+    };
+    db.Item.findAll(condition).then(function(itemDataForChart) {
+      res.json(itemDataForChart);
+      var monthlyTotals = Object.keys(itemDataForChart);
+      console.log(monthlyTotals);
+      console.log(monthlyTotals.Price);
+      //
+      // all data should be grouped in the response by month of creation, not sure how to deal with it from here, but once that is sorted it just needs to be converted to array with Object.keys and it should be able to be passed to the graphing npm
+      //
+    });
+  });
+
+  // Pie Graph API Call (aka Category distribution)
+  app.get("/api/pieGraph/:UserUserId", function(req, res) {
+    var UserUserId = req.params.UserUserId;
+    var condition = {
+      where: {
+        UserUserId: UserUserId
+      }
+    };
+    db.User.findOne(condition).then(function(getUsers) {
+      if (getUsers) {
+        console.log("User Found:");
+        //var userid = getUsers.UserId;
+        //console.log("The logged in user's id is:" + getUsers);
+        res.json(getUsers);
+      } else {
+        console.log("No such user:");
+        res.status(404).send("No such user");
+      }
+    });
+  });
+
+  // Line Graph API Call (want VS need spending)
+  app.get("/api/lineGraph/", function(req, res) {
+    var userName = req.params.userName;
+    var Password = req.params.Password;
+    console.log(userName);
+    console.log(Password);
+    var condition = {
+      where: {
+        userName: userName,
+        Password: Password
+      }
+    };
+    db.User.findOne(condition).then(function(getUsers) {
+      if (getUsers) {
+        console.log("User Found:");
+        //var userid = getUsers.UserId;
+        //console.log("The logged in user's id is:" + getUsers);
+        res.json(getUsers);
+      } else {
+        console.log("No such user:");
+        res.status(404).send("No such user");
+      }
+    });
+  });
 };
