@@ -11,6 +11,8 @@ body{
   background-color: transparent;
   background-image: url(../images/accounting-image.jpg);
   height: 300px;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 .flow {
