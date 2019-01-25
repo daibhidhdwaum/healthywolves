@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
-$(document).ready(function () {
+$(document).ready(function() {
   var $existingItems = $("#user-items"); // list of current users items box reference
   var $newItemSubmit = $("#new-item-submit"); // create item for current user button reference
+  var $selectNewChart = $("#choose-chart-submit");
 
   // dirty way to get userId
   var url = window.location.href;
@@ -9,31 +10,52 @@ $(document).ready(function () {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    getItems: function () {
+    getItems: function() {
       return $.ajax({
         url: "/api/loggedIn/",
         type: "GET"
       });
     },
-    createItem: function (insertItem) {
+    createItem: function(insertItem) {
       return $.ajax({
         url: "/api/items/",
         data: insertItem,
         type: "POST"
       });
     },
-    deleteItem: function (itemId) {
+    deleteItem: function(itemId) {
       return $.ajax({
         url: "api/items/" + itemId,
         type: "DELETE"
+      });
+    },
+    barChartMe: function(whatBarChart) {
+      return $.ajax({
+        url: "/api/barGraph/",
+        data: whatBarChart,
+        type: "GET"
+      });
+    },
+    lineChartMe: function(whatLineChart) {
+      return $.ajax({
+        url: "/api/lineGraph/",
+        data: whatLineChart,
+        type: "GET"
+      });
+    },
+    pieChartMe: function(whatPieChart) {
+      return $.ajax({
+        url: "/api/pieGraph/",
+        data: whatPieChart,
+        type: "GET"
       });
     }
   };
 
   // refreshItems gets new items from the db and repopulates the list
-  var refreshItems = function () {
-    API.getItems().then(function (data) {
-      var $items = data.map(function (itemList) {
+  var refreshItems = function() {
+    API.getItems().then(function(data) {
+      var $items = data.map(function(itemList) {
         var $a = $("<a>").text(itemList.itemId);
 
         var $li = $("<li>")
@@ -59,11 +81,8 @@ $(document).ready(function () {
 
   // delete item from user including from the database
   // still bugged at this time
-  $(document).on("click", ".delete", function () {
-    // console.log("Entered Delete function:");
+  $(document).on("click", ".delete", function() {
     var itemId = $(this).attr("data-id");
-    // console.log($(this));
-    // console.log(itemId);
     API.deleteItem(itemId);
     refreshItems();
   });
@@ -92,4 +111,38 @@ $(document).ready(function () {
     $("#item-type").val("");
     $("#item-category").val("");
   }
+
+  $selectNewChart.on("click", gimmieAChart);
+  function gimmieAChart(event) {
+    event.preventDefault();
+    var whichChart = $("#choose-chart")
+      .val()
+      .trim();
+    console.log(whichChart);
+    if (whichChart === "Pie Chart") {
+      alert(whichChart);
+      renderPie(currentUser);
+    } else if (whichChart === "Line Chart") {
+      alert(whichChart);
+      renderLine(currentUser);
+    } else if (whichChart === "Bar Chart") {
+      alert(whichChart);
+      renderBar(currentUser);
+    } else {
+      alert("something went wrong");
+    }
+  }
+
+  var renderPie = function() {
+    API.pieChartMe(currentUser);
+  };
+
+  var renderLine = function() {
+    API.lineChartMe(currentUser);
+  };
+
+  var renderBar = function() {
+    API.barChartMe(currentUser);
+  };
+
 });
