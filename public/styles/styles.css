@@ -42,13 +42,19 @@ body{
 
 strong {
   background-color: transparent;
+  font-family: 'Oswald', sans-serif;
+  
+}
+
+p {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+
 }
 
 li {
   color: black;
-  font-size: 26px;
-  text-emphasis: bolder;
-  margin: 10px;
+  font-size: 18px;
 }
 
 label {
@@ -63,13 +69,24 @@ h3 {
 
 .itemTextBox {
   opacity: 0.6;
-  background-image: url("../Images/Bill2.jpg");
+  background-image: url("../Images/cheque-fill.jpg");
   background-position: center;
-  background-size: 60%;
-  padding: 15px;
-  margin: 5px;
+  background-size: 90%;
+  padding: 20px;
+  margin: 10px 0px 10px 0px;
+  border: solid;
   border-color: black;
   border-width: 2px;
-  border-style: dashed;
   border-radius: 5px;
+}
+
+.items {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  margin: 0px;
+  padding-bottom: 5px;
+}
+
+.custom-select {
+  border: 1px solid black;
 }

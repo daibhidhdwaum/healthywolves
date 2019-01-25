@@ -25,7 +25,7 @@
               <div class="row">
 
                 <div class="col mr-1 my-1">
-                  <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
+                  <input type="number" id="item-price" class="form-control custom-select" aria-label="Dollar ammount (with dot and two decimal places)">
                 </div>
 
                 <div class="col my-1">
@@ -62,24 +62,25 @@
 
         {{!-- // page alert to be replaced when code is updated --}}
         <div class="row">
-          <div class="container mx-auto" style="width:80%">
-            <strong> * refresh page to update item list * </strong>
+          <div class="container text-center py-3">
+            <p class ="refresh"> * refresh page to update item list * </p>
           </div>
         </div>
 
         {{!-- Interactive Display of users items in database w/ handlebars --}}
-        <div class="row mt-5" id="botLeftRow">
+        <div class="row mt-3" id="botLeftRow">
           <div class="col">
             <div class="container">
               {{!-- handlebars from database of users items with ability to delete from database --}}
-              <h3 class="text-left py-5">User Items</h3>
+              <h3 class="text-left mx-2">User Items</h3>
               <ul id="user-items" class="list-group">
                 {{#each userData}}
-                <div class="itemTextBox my-2">
+                <div class="itemTextBox align-left">
                   <li class="list-group-item ">
-                    <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
-                    </strong>{{this.Category}}
-                    <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
+                    <p class="items">Price: $<span>{{this.Price}}</span></p>
+                    <p class="items">Type: {{this.Typeof}}</p>
+                    <p class="items">Category: {{this.Category}}<span><button class="btn btn-secondary float-right delete" data-id="{{this.itemId}}">ｘ</button></span></p>
+                    
                   </li>
                 </div>
                 {{/each}}
