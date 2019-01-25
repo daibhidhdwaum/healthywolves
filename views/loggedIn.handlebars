@@ -47,22 +47,15 @@
                       <option value="Groceries">Groceries</option>
                       <option value="Debt">Debt</option>
                     </select>
-
                   </div>
                 </div>
-                {{!-- <input type="text" id="item-category" class="form-control" aria-label="item category"> --}}
 
 
                 <div class="col ml-1 my-1">
-                  <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
+                  <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
                 </div>
 
-
-              <div class="col">
-                <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
               </div>
-
-            </div>
             </form>
           </div>
         </div>
@@ -85,7 +78,7 @@
                 <div class="itemTextBox my-2">
                   <li class="list-group-item ">
                     <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
-                    </strong>{{this.Category}} 
+                    </strong>{{this.Category}}
                     <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
                   </li>
                 </div>
@@ -101,28 +94,22 @@
       <div class="col ml-1 mr-2" id="mainColRight">
 
         {{!-- User selection fields for modifying graphs --}}
-        <div class="row" id="topRightRow">
+        <div class="row float-right" id="topRightRow">
 
           {{!-- chart dropdown --}}
           <div class="col float-right">
             <form>
-
               <div class="row float-right">
                 <div class="dropdown mx-2 float-right">
-                  <button class="btn btn-secondary dropdown-toggle float-right" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-              <div class="row">
-                <div class="dropdown mx-5 my-1">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-
-                    Chart Selection
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" data-id="BarChart">Bar Chart</a>
-                    <a class="dropdown-item" data-id="PieChart">Pie Chart</a>
-                    <a class="dropdown-item" data-id="Line Chart">Line Chart</a>
+                  <div class="col my-1">
+                    <div class="input-group">
+                      <select class="custom-select" id="item-category" aria-label="Choose A Category">
+                        <option selected>Chart Selection</option>
+                        <option value="Bar Chart">Bar Chart</option>
+                        <option value="Pie Chart">Pie Chart</option>
+                        <option value="Line Chart">Line Chart</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
