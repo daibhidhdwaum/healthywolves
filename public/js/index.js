@@ -14,7 +14,7 @@ $(document).ready(function() {
         .val()
         .trim()
     };
-    console.log(newUser);
+    // console.log(newUser);
     $.post("/api/users", newUser);
     $("#new-user").val("");
     $("#new-user-pass").val("");
@@ -34,15 +34,15 @@ $(document).ready(function() {
     var Password = $("#user-login-pass")
       .val()
       .trim();
-    console.log(userName);
-    console.log(Password);
+    // console.log(userName);
+    // console.log(Password);
     var url = "/api/users/" + userName + "/" + Password;
     var jqxhr = $.get(url, function(data) {
       if (jqxhr.done() && (userName || "")) {
-        alert("Success");
+        // alert("Success");
         var userid = data.UserId;
         var goToLogin = "/loggedIn/" + userid;
-        console.log("The user id is:" + userid);
+        // console.log("The user id is:" + userid);
         window.location = goToLogin;
       } else if (jqxhr.fail()) {
         alert("Invalid login.Try again");

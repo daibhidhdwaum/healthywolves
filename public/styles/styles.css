@@ -3,6 +3,11 @@
 body{
   background-color: lightgrey;
 }
+
+select{
+  overflow: visible;
+}
+
 .jumbotron{
   background-color: transparent;
   background-image: url(../images/accounting-image.jpg);
@@ -38,4 +43,22 @@ strong {
   background-color: transparent;
 }
 
+li {
+  color: black;
+  font-size: 26px;
+  text-emphasis: bolder;
+  margin: 10px;
+}
 
+.itemTextBox {
+  opacity: 0.6;
+  background-image: url("../Images/Bill2.jpg");
+  background-position: center;
+  background-size: 60%;
+  padding: 15px;
+  margin: 5px;
+  border-color: black;
+  border-width: 2px;
+  border-style: dashed;
+  border-radius: 5px;
+}
