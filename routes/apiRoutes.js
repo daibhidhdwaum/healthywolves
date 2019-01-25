@@ -28,7 +28,7 @@ module.exports = function(app) {
     });
   });
 
-  // generates custom url for loggedIn.handlebars and passes it the user table reference
+  // generates custom url for loggedIn.handlebars and passes it the item table reference
   app.get("/api/loggedIn/:userid", function(req, res) {
     var userId = req.param.userid;
     console.log(userId);
@@ -87,7 +87,7 @@ module.exports = function(app) {
       res.status(200).send("Item Destroyed");
     });
   });
-
+  //-------------------------------------------------------Charts code--------------------------------------------------//
   // Bar Graph API Call (aka Month to Month total spending)
   app.get("/api/barGraph/:UserUserId", function(req, res) {
     var UserUserId = req.params.UserUserId;
@@ -133,18 +133,18 @@ module.exports = function(app) {
   });
 
   // Line Graph API Call (want VS need spending)
-  app.get("/api/lineGraph/", function(req, res) {
-    var userName = req.params.userName;
-    var Password = req.params.Password;
-    console.log(userName);
-    console.log(Password);
+  app.get("/api/lineGraph/:UserUserId", function(req, res) {
+    var userId = req.params.UserUserId;
+    //var Password = req.params.Password;
+    console.log(userId);
+    //console.log(Password);
     var condition = {
       where: {
-        userName: userName,
-        Password: Password
+        UserUserId: userId
       }
     };
-    db.User.findOne(condition).then(function(getUsers) {
+
+    db.Item.findAll(condition).then(function(getUsers) {
       if (getUsers) {
         console.log("User Found:");
         //var userid = getUsers.UserId;
