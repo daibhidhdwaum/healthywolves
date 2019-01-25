@@ -17,14 +17,14 @@ h1{
   font-size: 120px;
   color: black;
   text-decoration: underline;
-  /* margin-right: 130px; */
+  margin-right: 130px;
   margin-bottom: 20px;
   color: lightgrey;
 }
 
 .expense-tracker {
   font-family: 'Oswald', sans-serif;
-  /* margin-right: 131px; */
+  margin-right: 131px;
   color: black;
   background-color: lightgrey;
   padding: 1px;
