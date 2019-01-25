@@ -1,86 +1,87 @@
 <div id="home">
 
   {{!-- header --}}
-  <div class="jumbotron header">
-    <div class="col mx-auto">
-      <h1 class="text-right mx-2"><span class="flow">flow</span><br><span class="expense-tracker">Expense Tracker</span></h1>
-    </div>
 
+  <div class="jumbotron header sticky-top">
+    <div class="col">
+      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
+          Tracker</span></h1>
+    </div>
   </div>
 
-  <div class="container">
+  <div class="container py-4">
 
     {{!-- primary page content area --}}
     <div class="row" id="mainBox">
       {{!-- Left Side of top bar AKA input and items list --}}
-      <div class="col" id="mainColLeft">
+
+      <div class="col mr-2" id="mainColLeft">
 
         {{!-- User input fields for items --}}
-        <div class="row mx-2" id="topLeftRow">
+        <div class="row" id="topLeftRow">
 
-          <div class="col">
+          <div class="col ml-1 mr-2">
             <form id="newItemCreateForm">
               <div class="row">
 
-                <div class="col" >
+                <div class="col mr-1 my-1">
                   <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
                 </div>
 
-
-                <div class="col" id="item-type">
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-label="wantNeed"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Type
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu wantNeed">
-                      <a class="dropdown-item" href="#">Want</a>
-                      <a class="dropdown-item" href="#">Need</a>
-                    </div>
-                  </div> 
-                  <input type="text" id="item-type" class="form-control" aria-label="item type">
-
+                <div class="col my-1">
+                  <div class="input-group">
+                    <select class="custom-select" id="item-type" aria-label="Choose Want or Need">
+                      <option selected>Type</option>
+                      <option value="Want">Want</option>
+                      <option value="Need">Need</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="col mx-0" id="item-category">
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      Category
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="category">
-                      <a class="dropdown-item" href="#">Rent</a>
-                      <a class="dropdown-item" href="#">Groceries</a>
-                      <a class="dropdown-item" href="#">Debt</a>
-                    </div>
-                  </div> 
-                  <input type="text" id="item-category" class="form-control" aria-label="item category">
 
+                <div class="col my-1">
+                  <div class="input-group">
+                    <select class="custom-select" id="item-category" aria-label="Choose A Category">
+                      <option selected>Category</option>
+                      <option value="Rent">Rent</option>
+                      <option value="Groceries">Groceries</option>
+                      <option value="Debt">Debt</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="col">
-                  <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
+
+                <div class="col ml-1 my-1">
+                  <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
                 </div>
 
               </div>
             </form>
           </div>
+        </div>
 
+        {{!-- // page alert to be replaced when code is updated --}}
+        <div class="row">
+          <div class="container mx-auto" style="width:80%">
+            <strong> * refresh page to update item list * </strong>
+          </div>
         </div>
 
         {{!-- Interactive Display of users items in database w/ handlebars --}}
-        <div class="row" id="botLeftRow">
+        <div class="row mt-5" id="botLeftRow">
           <div class="col">
-            <div class="container m-2">
+            <div class="container">
               {{!-- handlebars from database of users items with ability to delete from database --}}
-              <h3>User Items</h3>
+              <h3 class="text-left py-5">User Items</h3>
               <ul id="user-items" class="list-group">
                 {{#each userData}}
-                <li class="list-group-item my-2">
-                  <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
-                  </strong>{{this.Category}} <br> {{!--<strong>Created on: </strong> {{this.createdAt}}--}}
-                  <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
-                </li>
+                <div class="itemTextBox my-2">
+                  <li class="list-group-item ">
+                    <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
+                    </strong>{{this.Category}}
+                    <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
+                  </li>
+                </div>
                 {{/each}}
               </ul>
             </div>
@@ -90,24 +91,25 @@
       </div>
 
       {{!-- Start of main right side column --}}
-      <div class="col" id="mainColRight">
+      <div class="col ml-1 mr-2" id="mainColRight">
 
         {{!-- User selection fields for modifying graphs --}}
-        <div class="row" id="topRightRow">
+        <div class="row float-right" id="topRightRow">
 
           {{!-- chart dropdown --}}
-          <div class="col">
+          <div class="col float-right">
             <form>
-              <div class="row">
-                <div class="dropdown mx-5">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Chart Selection
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Bar Chart</a>
-                    <a class="dropdown-item" href="#">Pie Chart</a>
-                    <a class="dropdown-item" href="#">Line Chart</a>
+              <div class="row float-right">
+                <div class="dropdown mx-2 float-right">
+                  <div class="col my-1">
+                    <div class="input-group">
+                      <select class="custom-select" id="item-category" aria-label="Choose A Category">
+                        <option selected>Chart Selection</option>
+                        <option value="Bar Chart">Bar Chart</option>
+                        <option value="Pie Chart">Pie Chart</option>
+                        <option value="Line Chart">Line Chart</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -118,10 +120,10 @@
 
         {{!-- Box to display graphs--}}
 
-        <div class="row" id="botLeftRow">
+        <div class="row mt-5" id="botRightRow">
           <div class="col">
 
-            <div class="container m-3">
+            <div class="container m-2 mt-4">
               {{!-- this is where the charts display --}}
               <div id="chartHolder">
                 <canvas id="LineChart" width="400" height="400"></canvas>
@@ -138,36 +140,11 @@
 
     </div>
   </div>
-</div>
 
-{{!-- saved code --}}
+  {{!--libraries--}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
-{{!-- <ul>
-  {{#each items}}
-  <li data-id="{{this.id}}" class="list-group-item">
-    <a href="example/{{this.id}}">{{this.text}}</a>
-    <button class="btn btn-danger delete">ｘ</button>
-  </li>
-  {{/each}}
-</ul> --}}
-
-
-{{!-- saved code --}}
-
-{{!-- <h3>Existing Users</h3>
-<ul id="existing-users" class="list-group">
-  {{#each userData}}
-  <li data-id="{{this.itemId}}" class="list-group-item">
-    <a href="users/{{this.itemId}}">{{this.Store}}</a>
-    <button class="btn btn-danger float-right delete">ｘ</button>
-  </li>
-  {{/each}}
-</ul> --}}
-
-{{!--libraries--}}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-
-{{!--custom script--}}
-<script src="/js/loggedIn.js"></script>
-<script src="/js/chart.js"></script>
+  {{!--custom script--}}
+  <script src="/js/loggedIn.js"></script>
+  <script src="/js/chart.js"></script>
