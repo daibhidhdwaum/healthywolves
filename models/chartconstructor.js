@@ -33,8 +33,8 @@ var LineChart = function() {
     options: {
         showLines: true
     }
-});
-}
+})
+};
 
 //Doughnut Chart
 var HoleChart = function() {
@@ -68,8 +68,8 @@ var HoleChart = function() {
         options: {
             cutoutPercentage: 50
         }
-    });
-}
+    })
+};
 
 var BarChart = function() {
     this.chart = new Chart(ctx, {
@@ -107,9 +107,12 @@ var BarChart = function() {
                 }]
             }
         }
-    });
+    })
+};
 
 
-modules.export = LineChart;
-modules.export = HoleChart;
-modules.export = BarChart;
+module.exports = {
+    lineChart: LineChart,
+    holeChart: HoleChart,
+    barChart: BarChart
+}
