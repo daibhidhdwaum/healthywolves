@@ -74,10 +74,10 @@
             <h3>User Items</h3>
             <ul id="user-items" class="list-group">
               {{#each userData}}
-              <li data-id="{{this.itemId}}" class="list-group-item my-2">
+              <li class="list-group-item my-2">
                 <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
-                </strong>{{this.Category}} <br> <strong>Created on: </strong> {{this.createdAt}}
-                <button class="btn btn-danger float-right delete">ｘ</button>
+                </strong>{{this.Category}} <br> {{!--<strong>Created on: </strong> {{this.createdAt}}--}}
+                <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
               </li>
               {{/each}}
             </ul>
