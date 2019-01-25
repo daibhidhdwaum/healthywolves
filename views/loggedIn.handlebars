@@ -3,171 +3,136 @@
   {{!-- header --}}
   <div class="jumbotron header">
     <div class="col mx-auto">
-      <h1 class="text-right mx-4"><span class="flow">flow</span><br><span class="expense-tracker">Expense Tracker</span></h1>
+      <h1 class="text-right mx-2"><span class="flow">flow</span><br><span class="expense-tracker">Expense Tracker</span></h1>
     </div>
 
   </div>
 
-  {{!-- primary page content area --}}
-  <div class="row" id="mainBox">
-    {{!-- Left Side of top bar AKA input and items list --}}
-    <div class="col" id="mainColLeft">
+  <div class="container">
 
-      {{!-- User input fields for items --}}
-      <div class="row mx-5" id="topLeftRow">
+    {{!-- primary page content area --}}
+    <div class="row" id="mainBox">
+      {{!-- Left Side of top bar AKA input and items list --}}
+      <div class="col" id="mainColLeft">
 
-        <div class="col">
-          <form id="newItemCreateForm">
-            <div class="row">
+        {{!-- User input fields for items --}}
+        <div class="row mx-2" id="topLeftRow">
 
-              <div class="col" >
-                <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
+          <div class="col">
+            <form id="newItemCreateForm">
+              <div class="row">
+
+                <div class="col" >
+                  <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
+                </div>
+
+
+                <div class="col" id="item-type">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-label="wantNeed"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Type
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu wantNeed">
+                      <a class="dropdown-item" href="#">Want</a>
+                      <a class="dropdown-item" href="#">Need</a>
+                    </div>
+                  </div> 
+                  <input type="text" id="item-type" class="form-control" aria-label="item type">
+
+                </div>
+
+                <div class="col mx-0" id="item-category">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      Category
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="category">
+                      <a class="dropdown-item" href="#">Rent</a>
+                      <a class="dropdown-item" href="#">Groceries</a>
+                      <a class="dropdown-item" href="#">Debt</a>
+                    </div>
+                  </div> 
+                  <input type="text" id="item-category" class="form-control" aria-label="item category">
+
+                </div>
+
+                <div class="col">
+                  <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
+                </div>
+
               </div>
+            </form>
+          </div>
 
+        </div>
 
-              <div class="col" id="item-type">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-label="wantNeed"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Type
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu wantNeed">
-                    <a class="dropdown-item" href="#">Want</a>
-                    <a class="dropdown-item" href="#">Need</a>
-                  </div>
-                </div> --}}
-                <input type="text" id="item-type" class="form-control" aria-label="item type">
+        {{!-- Interactive Display of users items in database w/ handlebars --}}
+        <div class="row" id="botLeftRow">
+          <div class="col">
+            <div class="container m-2">
+              {{!-- handlebars from database of users items with ability to delete from database --}}
+              <h3>User Items</h3>
+              <ul id="user-items" class="list-group">
+                {{#each userData}}
+                <li class="list-group-item my-2">
+                  <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
+                  </strong>{{this.Category}} <br> {{!--<strong>Created on: </strong> {{this.createdAt}}--}}
+                  <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {{!-- End of main left side column --}}
+      </div>
 
-              </div>
+      {{!-- Start of main right side column --}}
+      <div class="col" id="mainColRight">
 
-              <div class="col mx-0" id="item-category">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
+        {{!-- User selection fields for modifying graphs --}}
+        <div class="row" id="topRightRow">
+
+          {{!-- chart dropdown --}}
+          <div class="col">
+            <form>
+              <div class="row">
+                <div class="dropdown mx-5">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Category
+                    Chart Selection
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="category">
-                    <a class="dropdown-item" href="#">Rent</a>
-                    <a class="dropdown-item" href="#">Groceries</a>
-                    <a class="dropdown-item" href="#">Debt</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Bar Chart</a>
+                    <a class="dropdown-item" href="#">Pie Chart</a>
+                    <a class="dropdown-item" href="#">Line Chart</a>
                   </div>
-                </div> --}}
-                <input type="text" id="item-category" class="form-control" aria-label="item category">
-
-              </div>
-
-              <div class="col">
-                <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
-              </div>
-
-            </div>
-          </form>
-        </div>
-
-      </div>
-
-      {{!-- Interactive Display of users items in database w/ handlebars --}}
-      <div class="row" id="botLeftRow">
-        <div class="col">
-          <div class="container m-4 p-2">
-            {{!-- handlebars from database of users items with ability to delete from database --}}
-            <h3>User Items</h3>
-            <ul id="user-items" class="list-group">
-              {{#each userData}}
-              <li class="list-group-item my-2">
-                <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
-                </strong>{{this.Category}} <br> {{!--<strong>Created on: </strong> {{this.createdAt}}--}}
-                <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-      {{!-- End of main left side column --}}
-    </div>
-
-    {{!-- Start of main right side column --}}
-    <div class="col" id="mainColRight">
-
-      {{!-- User selection fields for modifying graphs --}}
-      <div class="row mx-5" id="topRightRow">
-
-        {{!-- chart dropdown --}}
-        <div class="col">
-          <form>
-            <div class="row">
-              <div class="dropdown mx-5">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Chart Selection
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Bar Chart</a>
-                  <a class="dropdown-item" href="#">Pie Chart</a>
-                  <a class="dropdown-item" href="#">Line Chart</a>
                 </div>
               </div>
-            </div>
-          </form>
-        </div>
-
-        {{!-- chart dropdown --}}
-        <div class="col">
-          <form>
-            <div class="row">
-              <div class="dropdown col-2">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Chart Selection
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Bar Chart</a>
-                  <a class="dropdown-item" href="#">Pie Chart</a>
-                  <a class="dropdown-item" href="#">Line Chart</a>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        {{!-- chart dropdown --}}
-        <div class="col">
-          <form>
-            <div class="row">
-              <div class="dropdown col-2">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Chart Selection
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Bar Chart</a>
-                  <a class="dropdown-item" href="#">Pie Chart</a>
-                  <a class="dropdown-item" href="#">Line Chart</a>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
-      </div>
-
-      {{!-- Box to display graphs--}}
-
-      <div class="row" id="botLeftRow">
-        <div class="col">
-
-          <div class="container m-5 p-5">
-            {{!-- this is where the charts display --}}
-            <img src="https://picsum.photos/550/400" alt="placeholder for charts display">
+            </form>
           </div>
 
         </div>
+
+        {{!-- Box to display graphs--}}
+
+        <div class="row" id="botLeftRow">
+          <div class="col">
+
+            <div class="container m-3">
+              {{!-- this is where the charts display --}}
+              <img src="https://picsum.photos/550/400" alt="placeholder for charts display">
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
+
     </div>
-
-
   </div>
 </div>
 
