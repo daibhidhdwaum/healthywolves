@@ -3,11 +3,12 @@
   {{!-- header --}}
   <div class="jumbotron header sticky-top">
     <div class="col">
-      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense Tracker</span></h1>
+      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
+          Tracker</span></h1>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container py-4">
 
     {{!-- primary page content area --}}
     <div class="row" id="mainBox">
@@ -17,51 +18,50 @@
         {{!-- User input fields for items --}}
         <div class="row" id="topLeftRow">
 
-          <div class="col"
-            <form id="newItemCreateForm">
-              <div class="row">
+          <div class="col" <form id="newItemCreateForm">
+            <div class="row">
 
-                <div class="col" >
-                  <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
+              <div class="col">
+                <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
+              </div>
+
+
+              <div class="col" id="item-type">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-label="wantNeed"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Type
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu wantNeed">
+                    <a class="dropdown-item" href="#">Want</a>
+                    <a class="dropdown-item" href="#">Need</a>
+                  </div>
                 </div>
-
-
-                <div class="col" id="item-type">
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-label="wantNeed"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Type
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu wantNeed">
-                      <a class="dropdown-item" href="#">Want</a>
-                      <a class="dropdown-item" href="#">Need</a>
-                    </div>
-                  </div> 
-                  {{!-- <input type="text" id="item-type" class="form-control" aria-label="item type"> --}}
-
-                </div>
-
-                <div class="col" id="item-category">
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      Category
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="category">
-                      <a class="dropdown-item" href="#">Rent</a>
-                      <a class="dropdown-item" href="#">Groceries</a>
-                      <a class="dropdown-item" href="#">Debt</a>
-                    </div>
-                  </div> 
-                  {{!-- <input type="text" id="item-category" class="form-control" aria-label="item category"> --}}
-
-                </div>
-
-                <div class="col">
-                  <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
-                </div>
+                {{!-- <input type="text" id="item-type" class="form-control" aria-label="item type"> --}}
 
               </div>
+
+              <div class="col" id="item-category">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Category
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="category">
+                    <a class="dropdown-item" href="#">Rent</a>
+                    <a class="dropdown-item" href="#">Groceries</a>
+                    <a class="dropdown-item" href="#">Debt</a>
+                  </div>
+                </div>
+                {{!-- <input type="text" id="item-category" class="form-control" aria-label="item category"> --}}
+
+              </div>
+
+              <div class="col">
+                <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
+              </div>
+
+            </div>
             </form>
           </div>
 
