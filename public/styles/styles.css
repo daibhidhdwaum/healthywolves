@@ -1,5 +1,7 @@
 /* font-family: 'Oswald', sans-serif; */
-
+h1 {
+  margin-bottom: 20px;
+}
 body{
   background-color: lightgrey;
 }
@@ -15,18 +17,19 @@ body{
   font-size: 120px;
   color: black;
   text-decoration: underline;
-  margin-right: 130px;
-  margin-bottom: 20px;
+  margin-right: 160px;
+  margin-bottom: 40px;
   color: lightgrey;
 }
 
 .expense-tracker {
   font-family: 'Oswald', sans-serif;
-  margin-right: 131px;
+  margin-right: 160px;
   color: black;
   background-color: lightgrey;
-  padding: 1px;
-  
+  padding-right: 2px;
+  /* border: 1px solid black;
+  border-radius: 15%; */
 }
 
 .btn {

@@ -2,10 +2,9 @@
 
   {{!-- header --}}
   <div class="jumbotron header">
-    <div class="col mx-auto">
-      <h1 class="text-right mx-2"><span class="flow">flow</span><br><span class="expense-tracker">Expense Tracker</span></h1>
+    <div class="col">
+      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense Tracker</span></h1>
     </div>
-
   </div>
 
   <div class="container">
@@ -13,12 +12,12 @@
     {{!-- primary page content area --}}
     <div class="row" id="mainBox">
       {{!-- Left Side of top bar AKA input and items list --}}
-      <div class="col" id="mainColLeft">
+      <div class="col m-1" id="mainColLeft">
 
         {{!-- User input fields for items --}}
-        <div class="row mx-2" id="topLeftRow">
+        <div class="row" id="topLeftRow">
 
-          <div class="col">
+          <div class="col"
             <form id="newItemCreateForm">
               <div class="row">
 
@@ -38,11 +37,11 @@
                       <a class="dropdown-item" href="#">Need</a>
                     </div>
                   </div> 
-                  <input type="text" id="item-type" class="form-control" aria-label="item type">
+                  {{!-- <input type="text" id="item-type" class="form-control" aria-label="item type"> --}}
 
                 </div>
 
-                <div class="col mx-0" id="item-category">
+                <div class="col" id="item-category">
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" aria-label="category" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
@@ -54,12 +53,12 @@
                       <a class="dropdown-item" href="#">Debt</a>
                     </div>
                   </div> 
-                  <input type="text" id="item-category" class="form-control" aria-label="item category">
+                  {{!-- <input type="text" id="item-category" class="form-control" aria-label="item category"> --}}
 
                 </div>
 
                 <div class="col">
-                  <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
+                  <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
                 </div>
 
               </div>
@@ -71,9 +70,9 @@
         {{!-- Interactive Display of users items in database w/ handlebars --}}
         <div class="row" id="botLeftRow">
           <div class="col">
-            <div class="container m-2">
+            <div class="container">
               {{!-- handlebars from database of users items with ability to delete from database --}}
-              <h3>User Items</h3>
+              <h3 class="text-left py-5">User Items</h3>
               <ul id="user-items" class="list-group">
                 {{#each userData}}
                 <li class="list-group-item my-2">
@@ -99,7 +98,7 @@
           <div class="col">
             <form>
               <div class="row">
-                <div class="dropdown mx-5">
+                <div class="dropdown mx-5 my-1">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Chart Selection
