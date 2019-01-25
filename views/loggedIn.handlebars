@@ -1,18 +1,20 @@
 <div id="home">
 
   {{!-- header --}}
-  <div class="jumbotron header mb-5">
-    <div class="col mx-auto">
-      <h1 class="text-right mx-2"><span class="flow">flow</span><br><span class="expense-tracker">Expense Tracker</span></h1>
-    </div>
 
+  <div class="jumbotron header sticky-top">
+    <div class="col">
+      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
+          Tracker</span></h1>
+    </div>
   </div>
 
-  <div class="container">
+  <div class="container py-4">
 
     {{!-- primary page content area --}}
     <div class="row" id="mainBox">
       {{!-- Left Side of top bar AKA input and items list --}}
+
       <div class="col mr-2" id="mainColLeft">
 
         {{!-- User input fields for items --}}
@@ -36,6 +38,7 @@
                   </div>
                 </div>
 
+
                 <div class="col my-1">
                   <div class="input-group">
                     <select class="custom-select" id="item-category" aria-label="Choose A Category">
@@ -44,14 +47,22 @@
                       <option value="Groceries">Groceries</option>
                       <option value="Debt">Debt</option>
                     </select>
+
                   </div>
                 </div>
+                {{!-- <input type="text" id="item-category" class="form-control" aria-label="item category"> --}}
+
 
                 <div class="col ml-1 my-1">
                   <input class="btn btn-primary" type="submit" value="Add Item" id="new-item-submit">
                 </div>
 
+
+              <div class="col">
+                <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
               </div>
+
+            </div>
             </form>
           </div>
         </div>
@@ -66,9 +77,9 @@
         {{!-- Interactive Display of users items in database w/ handlebars --}}
         <div class="row mt-5" id="botLeftRow">
           <div class="col">
-            <div class="container m-2">
+            <div class="container">
               {{!-- handlebars from database of users items with ability to delete from database --}}
-              <h3>User Items</h3>
+              <h3 class="text-left py-5">User Items</h3>
               <ul id="user-items" class="list-group">
                 {{#each userData}}
                 <div class="itemTextBox my-2">
@@ -95,10 +106,17 @@
           {{!-- chart dropdown --}}
           <div class="col float-right">
             <form>
+
               <div class="row float-right">
                 <div class="dropdown mx-2 float-right">
                   <button class="btn btn-secondary dropdown-toggle float-right" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+              <div class="row">
+                <div class="dropdown mx-5 my-1">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+
                     Chart Selection
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -1,11 +1,10 @@
 <div id="home">
 
   {{!-- header --}}
-  <div class="jumbotron">
-    <div class="row header-background">
-      <div class="col offset-5 header-background-2">
-        <h1>flow</h1>
-      </div>
+  <div class="jumbotron header sticky-top">
+    <div class="col">
+      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
+          Tracker</span></h1>
     </div>
   </div>
 
@@ -20,7 +19,7 @@
             <input type="text" id="new-user" class="form-control" aria-describedby="New User Name" placeholder="Enter Name">
             <input type="text" id="new-user-pass" class="form-control" aria-describedby="New User Password" placeholder="Enter Password">
             <br>
-            <button id="new-user-submit" class="btn btn-primary float-right">Create User</button>
+            <button id="new-user-submit" class="btn btn-secondary float-right">Create User</button>
           </div>
         </form>
         <form class="clearfix mx-auto" style="width:60%" action="GET">
@@ -30,7 +29,7 @@
             <input type="password" id="user-login-pass" class="form-control" aria-describedby="Login Password"
               placeholder="Enter Password">
             <br>
-            <button id="user-login-submit" class="btn btn-primary float-right">Login user</button>
+            <button id="user-login-submit" class="btn btn-secondary float-right">Login user</button>
           </div>
         </form>
       </div>

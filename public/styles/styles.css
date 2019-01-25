@@ -1,17 +1,15 @@
 /* font-family: 'Oswald', sans-serif; */
+h1 {
+  margin-bottom: 20px;
+}
 
 body{
   background-color: lightgrey;
 }
 
-select{
-  overflow: visible;
-}
-
 .jumbotron{
   background-color: transparent;
   background-image: url(../images/accounting-image.jpg);
-  opacity: 0.8;
   height: 300px;
 }
 
@@ -20,18 +18,19 @@ select{
   font-size: 120px;
   color: black;
   text-decoration: underline;
-  margin-right: 130px;
-  margin-bottom: 20px;
+  margin-right: 160px;
+  margin-bottom: 40px;
   color: lightgrey;
 }
 
 .expense-tracker {
   font-family: 'Oswald', sans-serif;
-  margin-right: 131px;
+  margin-right: 160px;
   color: black;
   background-color: lightgrey;
-  padding: 1px;
-  
+  padding-right: 2px;
+  /* border: 1px solid black;
+  border-radius: 15%; */
 }
 
 .btn {
@@ -48,6 +47,16 @@ li {
   font-size: 26px;
   text-emphasis: bolder;
   margin: 10px;
+}
+
+label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+}
+
+h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
 }
 
 .itemTextBox {
