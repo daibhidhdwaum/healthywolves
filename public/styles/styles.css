@@ -2,9 +2,11 @@
 h1 {
   margin-bottom: 20px;
 }
+
 body{
   background-color: lightgrey;
 }
+
 .jumbotron{
   background-color: transparent;
   background-image: url(../images/accounting-image.jpg);
@@ -38,6 +40,16 @@ body{
 
 strong {
   background-color: transparent;
+}
+
+label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+}
+
+h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
 }
 
 
