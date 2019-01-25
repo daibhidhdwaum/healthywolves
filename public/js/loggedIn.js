@@ -1,24 +1,28 @@
 /* eslint-disable linebreak-style */
-$(document).ready(function() {
+$(document).ready(function () {
   var $existingItems = $("#user-items"); // list of current users items box reference
   var $newItemSubmit = $("#new-item-submit"); // create item for current user button reference
 
+  // dirty way to get userId
+  var url = window.location.href;
+  var UserUserId = url.substr(url.length - 1);
+
   // The API object contains methods for each kind of request we'll make
   var API = {
-    getItems: function() {
+    getItems: function () {
       return $.ajax({
         url: "/api/loggedIn/",
         type: "GET"
       });
     },
-    createItem: function(insertItem) {
+    createItem: function (insertItem) {
       return $.ajax({
         url: "/api/items/",
         data: insertItem,
         type: "POST"
       });
     },
-    deleteItem: function(itemId) {
+    deleteItem: function (itemId) {
       return $.ajax({
         url: "api/items/" + itemId,
         type: "DELETE"
@@ -27,14 +31,14 @@ $(document).ready(function() {
   };
 
   // refreshItems gets new items from the db and repopulates the list
-  var refreshItems = function() {
-    API.getItems().then(function(data) {
-      var $items = data.map(function(itemList) {
+  var refreshItems = function () {
+    API.getItems().then(function (data) {
+      var $items = data.map(function (itemList) {
         var $a = $("<a>").text(itemList.itemId);
 
         var $li = $("<li>")
           .attr({
-            class: "list-group-item"
+            class: "list-group-item itemButton"
           })
           .append($a);
 
@@ -48,33 +52,28 @@ $(document).ready(function() {
       });
 
       $existingItems.empty();
-      $existingItems.append($items);
+      $existingItems.prepend($items);
     });
   };
+  refreshItems();
 
   // delete item from user including from the database
   // still bugged at this time
-  $(document).on("click", ".delete", function() {
-    console.log("Entered Delete function:");
+  $(document).on("click", ".delete", function () {
+    // console.log("Entered Delete function:");
     var itemId = $(this).attr("data-id");
-    console.log($(this));
-    console.log(itemId);
+    // console.log($(this));
+    // console.log(itemId);
     API.deleteItem(itemId);
     refreshItems();
   });
 
-  refreshItems();
-
   // create new item for current user
   $newItemSubmit.on("click", newItem);
   function newItem(event) {
+    refreshItems();
     event.preventDefault();
-    // dirty way to get userId
-    var url = window.location.href;
-    alert(url);
-    var UserUserId = url.substr(url.length - 1);
-    // var UserUserId = parseFloat(UserId);
-    // build url for api insertion
+    // build item object for api insertion
     var insertItem = {
       Price: $("#item-price")
         .val()
@@ -88,11 +87,6 @@ $(document).ready(function() {
       UserUserId: UserUserId
     };
     console.log(insertItem);
-    //console.log("User id is " + UserUserId);
-    // var url = "/api/items/" + createItem;
-    //console.log("Url is :" + url);
-
-    /*$.post("/api/items", createItem);*/
     API.createItem(insertItem);
     $("#item-price").val("");
     $("#item-type").val("");
