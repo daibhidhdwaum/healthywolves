@@ -1,10 +1,8 @@
 /* font-family: 'Oswald', sans-serif; */
-<<<<<<< HEAD
-=======
-h1{
-  
->>>>>>> 5f872bb6f9322f336e50aff2647a458fdb91c46e
 
+body{
+  background-color: lightgrey;
+}
 .jumbotron{
   background-color: transparent;
   background-image: url(../images/accounting-image.jpg);
@@ -28,6 +26,7 @@ h1{
   color: black;
   background-color: lightgrey;
   padding: 1px;
+  
 }
 
 .btn {
