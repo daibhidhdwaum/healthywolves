@@ -10,7 +10,7 @@
   </div>
 
   <div class="container py-4">
-      <strong><h4> * refresh page to update item list *</h4> </strong>
+      <strong><h4> * Refresh page to update item list *</h4> </strong>
     {{!-- primary page content area --}}
     <div class="row" id="mainBox">
       {{!-- Left Side of top bar AKA input and items list --}}
@@ -25,7 +25,7 @@
               <div class="row">
 
                 <div class="col mr-1 my-1">
-                  <input type="number" id="item-price" class="form-control custom-select" aria-label="Dollar ammount (with dot and two decimal places)">
+                  <input type="number" id="item-price" class="form-control custom-select" aria-label="Dollar Amount">
                 </div>
 
                 <div class="col my-1">
@@ -99,7 +99,7 @@
         {{!-- User selection fields for modifying graphs --}}
         <div class="row mx-1" id="topRightRow">
 
-          {{!-- chart dropdown --}}
+          {{!-- Chart Dropdown --}}
           <div class="col">
 
             <form>
@@ -109,21 +109,17 @@
                     <div class="input-group">
                       <select class="custom-select" id="choose-chart" aria-label="Choose A Category">
                         <option selected>Chart Selection</option>
-                        <option value="/test/chartdemos/images/bar.png">Bar Chart</option>
-                        <option value="/test/chartdemos/images/pie.png">Pie Chart</option>
-                        <option value="Line Chart">Line Chart</option>
+                        <option value="BarChart">Bar Chart</option>
+                        <option value="PieChart">Pie Chart</option>
+                        <option value="LineChart">Line Chart</option>
                       </select>
                     </div>
                   </div>
                 </div>
             </form>
 
-            <div class="col ml-1 my-1">
-              <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
-            </div>
-          </div>
-
         </div>
+
       </div>
 
       {{!-- Box to display graphs--}}
@@ -132,14 +128,9 @@
         <div class="col">
 
           <div class="chart-container">
-            {{!-- this is where the charts display --}}
-            <img src="" class="chart-types">
+            {{!-- This is where charts will display --}}
             <div id="chartHolder">
-              {{!--<canvas id="LineChart" width="400" height="400"></canvas>
-              <canvas id="PieChart" width="400" height="400"></canvas>
-              <canvas id="BarChart" width="400" height="400"></canvas>--}}
-        <img src = "/Images/Bar-Chart.png" alt ="Dummy Chart">
-
+              <canvas id="MyChart" width="400" height="400"></canvas>
             </div>
           </div>
 
@@ -158,5 +149,4 @@
 
 {{!--custom script--}}
 <script src="/js/loggedIn.js"></script>
-{{!--<script src="/js/chart.js"></script>--}}
-<script src="/js/dummycharts.js"></script>
+<script src="/js/charts.js"></script>
