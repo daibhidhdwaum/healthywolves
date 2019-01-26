@@ -1,7 +1,4 @@
 var db = require("../models");
-
-// I'm just writing this here as a test
-
 module.exports = function(app) {
   // Login and Password Check for index.handlebars
   app.get("/api/users/:userName/:Password", function(req, res) {
@@ -28,7 +25,7 @@ module.exports = function(app) {
     });
   });
 
-  // generates custom url for loggedIn.handlebars and passes it the user table reference
+  // generates custom url for loggedIn.handlebars and passes it the item table reference
   app.get("/api/loggedIn/:userid", function(req, res) {
     var userId = req.param.userid;
     console.log(userId);
@@ -87,7 +84,7 @@ module.exports = function(app) {
       res.status(200).send("Item Destroyed");
     });
   });
-
+  //-------------------------------------------------------Charts code--------------------------------------------------//
   // Bar Graph API Call (aka Month to Month total spending)
   app.get("/api/barGraph/:UserUserId", function(req, res) {
     var UserUserId = req.params.UserUserId;
@@ -133,20 +130,42 @@ module.exports = function(app) {
   });
 
   // Line Graph API Call (want VS need spending)
-  app.get("/api/lineGraph/", function(req, res) {
-    var userName = req.params.userName;
-    var Password = req.params.Password;
-    console.log(userName);
-    console.log(Password);
-    var condition = {
+  app.get("/api/lineGraph/:UserUserId", function(req, res) {
+    var userId = req.params.UserUserId;
+    //var Password = req.params.Password;
+    console.log(userId);
+    //console.log(Password);
+    /*var condition = {
       where: {
-        userName: userName,
-        Password: Password
+        UserUserId: userId
+      }
+    };*/
+    var condition = {
+      attributes: {
+        include: [
+          [db.sequelize.fn("COUNT", db.sequelize.col("Typeof")), "Type"]
+        ]
       }
     };
-    db.User.findOne(condition).then(function(getUsers) {
+    db.Item.findAll(condition).then(function(getUsers) {
+        if (getUsers) {
+          console.log("User Found:");
+          console.log(getUsers);
+          //var userid = getUsers.UserId;
+          //console.log("The logged in user's id is:" + getUsers);
+          res.json(getUsers);
+        } else {
+          console.log("No such user:");
+          res.status(404).send("No such user");
+        }
+      });
+    });
+    //sequelize.query("select count(*) as count,Typeof from expenses.items where UserUserId = '1' group by Typeof;").spread((results, metadata)
+
+    /*db.Item.findAndCountAll(condition).then(function(getUsers) {
       if (getUsers) {
         console.log("User Found:");
+        console.log(getUsers);
         //var userid = getUsers.UserId;
         //console.log("The logged in user's id is:" + getUsers);
         res.json(getUsers);
@@ -154,6 +173,5 @@ module.exports = function(app) {
         console.log("No such user:");
         res.status(404).send("No such user");
       }
-    });
-  });
+    });*/
 };

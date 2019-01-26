@@ -7,6 +7,7 @@ $(document).ready(function() {
   // dirty way to get userId
   var url = window.location.href;
   var UserUserId = url.substr(url.length - 1);
+  var currentUser = UserUserId;
 
   // The API object contains methods for each kind of request we'll make
   var API = {
@@ -29,24 +30,24 @@ $(document).ready(function() {
         type: "DELETE"
       });
     },
-    barChartMe: function(whatBarChart) {
+    barChartMe: function(currentUser) {
       return $.ajax({
-        url: "/api/barGraph/",
-        data: whatBarChart,
+        url: "/api/barGraph/" + currentUser,
+        //data: whatBarChart,
         type: "GET"
       });
     },
-    lineChartMe: function(whatLineChart) {
+    lineChartMe: function(currentUser) {
       return $.ajax({
-        url: "/api/lineGraph/",
-        data: whatLineChart,
+        url: "/api/lineGraph/" + currentUser,
+       // data: whatLineChart,
         type: "GET"
       });
     },
-    pieChartMe: function(whatPieChart) {
+    pieChartMe: function(currentUser) {
       return $.ajax({
-        url: "/api/pieGraph/",
-        data: whatPieChart,
+        url: "/api/pieGraph/" + currentUser,
+       // data: whatPieChart,
         type: "GET"
       });
     }
@@ -114,25 +115,30 @@ $(document).ready(function() {
 
   $selectNewChart.on("click", gimmieAChart);
   function gimmieAChart(event) {
+    console.log("Entered gimmieAChart function:");
     event.preventDefault();
     var whichChart = $("#choose-chart")
       .val()
       .trim();
     console.log(whichChart);
-    if (whichChart === "Pie Chart") {
+    switch (whichChart) {
+      case "Pie Chart":
       alert(whichChart);
       renderPie(currentUser);
-    } else if (whichChart === "Line Chart") {
+      break;
+    case "Line Chart":
       alert(whichChart);
       renderLine(currentUser);
-    } else if (whichChart === "Bar Chart") {
+      break;
+    case "Bar Chart":
       alert(whichChart);
       renderBar(currentUser);
-    } else {
+      break;
+      default:
       alert("something went wrong");
     }
   }
-
+  
   var renderPie = function() {
     API.pieChartMe(currentUser);
   };
@@ -144,5 +150,4 @@ $(document).ready(function() {
   var renderBar = function() {
     API.barChartMe(currentUser);
   };
-
 });

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "rootroot",
     "database": "expenses",
     "host": "localhost",
     "port": 3306,
@@ -10,7 +10,7 @@
   },
   "test": {
     "username": "root",
-    "password": "password",
+    "password": "rootroot",
     "database": "expenses",
     "host": "localhost",
     "port": 3306,
