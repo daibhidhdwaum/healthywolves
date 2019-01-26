@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-$(document).ready(function() {
+$(document).ready(function () {
   var $existingItems = $("#user-items"); // list of current users items box reference
   var $newItemSubmit = $("#new-item-submit"); // create item for current user button reference
   var $selectNewChart = $("#choose-chart-submit");
@@ -11,52 +11,49 @@ $(document).ready(function() {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    getItems: function() {
+    getItems: function () {
       return $.ajax({
         url: "/api/loggedIn/",
         type: "GET"
       });
     },
-    createItem: function(insertItem) {
+    createItem: function (insertItem) {
       return $.ajax({
         url: "/api/items/",
         data: insertItem,
         type: "POST"
       });
     },
-    deleteItem: function(itemId) {
+    deleteItem: function (itemId) {
       return $.ajax({
         url: "api/items/" + itemId,
         type: "DELETE"
       });
     },
-    barChartMe: function(currentUser) {
+    barChartGroc: function (currentUser) {
       return $.ajax({
-        url: "/api/barGraph/" + currentUser,
-        //data: whatBarChart,
+        url: "/api/barGraphGroc/" + currentUser,
         type: "GET"
       });
     },
-    lineChartMe: function(currentUser) {
+    barChartRent: function (currentUser) {
       return $.ajax({
-        url: "/api/lineGraph/" + currentUser,
-       // data: whatLineChart,
+        url: "/api/barGraphRent/" + currentUser,
         type: "GET"
       });
     },
-    pieChartMe: function(currentUser) {
+    barChartDebt: function (currentUser) {
       return $.ajax({
-        url: "/api/pieGraph/" + currentUser,
-       // data: whatPieChart,
+        url: "/api/barGraphDebt/" + currentUser,
         type: "GET"
       });
     }
   };
 
   // refreshItems gets new items from the db and repopulates the list
-  var refreshItems = function() {
-    API.getItems().then(function(data) {
-      var $items = data.map(function(itemList) {
+  var refreshItems = function () {
+    API.getItems().then(function (data) {
+      var $items = data.map(function (itemList) {
         var $a = $("<a>").text(itemList.itemId);
 
         var $li = $("<li>")
@@ -82,7 +79,7 @@ $(document).ready(function() {
 
   // delete item from user including from the database
   // still bugged at this time
-  $(document).on("click", ".delete", function() {
+  $(document).on("click", ".delete", function () {
     var itemId = $(this).attr("data-id");
     API.deleteItem(itemId);
     refreshItems();
@@ -123,31 +120,25 @@ $(document).ready(function() {
     console.log(whichChart);
     switch (whichChart) {
       case "Pie Chart":
-      alert(whichChart);
-      renderPie(currentUser);
-      break;
-    case "Line Chart":
-      alert(whichChart);
-      renderLine(currentUser);
-      break;
-    case "Bar Chart":
-      alert(whichChart);
-      renderBar(currentUser);
-      break;
+        renderPie(currentUser);
+        break;
+      case "Line Chart":
+        renderLine(currentUser);
+        break;
+      case "Bar Chart":
+        renderBar(currentUser);
+        break;
       default:
-      alert("something went wrong");
+        alert("something went wrong");
     }
   }
-  
-  var renderPie = function() {
-    API.pieChartMe(currentUser);
-  };
 
-  var renderLine = function() {
-    API.lineChartMe(currentUser);
-  };
-
-  var renderBar = function() {
-    API.barChartMe(currentUser);
+  var renderBar = function (currentUser) {
+    var userGroc = API.barChartGroc(currentUser);
+    var userRent = API.barChartRent(currentUser);
+    var userDebt = API.barChartDebt(currentUser);
+    console.log(userGroc);
+    console.log(userRent);
+    console.log(userDebt);
   };
 });

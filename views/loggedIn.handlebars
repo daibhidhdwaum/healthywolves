@@ -2,7 +2,7 @@
 
   {{!-- header --}}
 
-  <div class="jumbotron header sticky-top">
+  <div class="jumbotron header">
     <div class="col">
       <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
           Tracker</span></h1>
@@ -10,7 +10,7 @@
   </div>
 
   <div class="container py-4">
-      <strong><h4> * refresh page to update item list *</h4> </strong>
+      <strong><h4> * refresh page to update item list * </h4></strong>
     {{!-- primary page content area --}}
     <div class="row" id="mainBox">
       {{!-- Left Side of top bar AKA input and items list --}}
@@ -115,8 +115,8 @@
                 </div>
               </div>
             </form>
-            <input class="btn btn-secondary" type="submit" value="Choose Chart" id="choose-chart-submit">
           </div>
+            <input class="btn btn-secondary" type="submit" value="Choose Chart" id="choose-chart-submit">
 
         </div>
 
@@ -124,16 +124,14 @@
 
         <div class="row mt-5" id="botRightRow">
           <div class="col">
-
             <div class="container m-2 mt-4">
               {{!-- this is where the charts display --}}
               <div id="chartHolder">
-                <canvas id="LineChart" width="400" height="400"></canvas>
-                <canvas id="PieChart" width="400" height="400"></canvas>
-                <canvas id="BarChart" width="400" height="400"></canvas>
+                {{!-- <canvas id="LineChart" width="400" height="400"></canvas> --}}
+                <canvas id="PieChart" width="400" height="400" alt="Pie Chart Holder" style="background-color:black;margin:30px;margin-left:45px;"></canvas>
+                {{!-- <canvas id="BarChart" width="400" height="400"></canvas> --}}
               </div>
             </div>
-
           </div>
         </div>
 

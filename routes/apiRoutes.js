@@ -15,8 +15,6 @@ module.exports = function(app) {
     db.User.findOne(condition).then(function(getUsers) {
       if (getUsers) {
         console.log("User Found:");
-        //var userid = getUsers.UserId;
-        //console.log("The logged in user's id is:" + getUsers);
         res.json(getUsers);
       } else {
         console.log("No such user:");
@@ -85,93 +83,57 @@ module.exports = function(app) {
     });
   });
   //-------------------------------------------------------Charts code--------------------------------------------------//
-  // Bar Graph API Call (aka Month to Month total spending)
-  app.get("/api/barGraph/:UserUserId", function(req, res) {
+  // Bar Graph API Calls (get groceries total)
+  app.get("/api/barGraphGroc/:UserUserId", function(req, res) {
     var UserUserId = req.params.UserUserId;
-    var condition = {
-      include: {
-        Price: true,
-        where: {
-          UserUserId: UserUserId
-        },
-        group: [sequelize.fn("date_trunc", "month", sequelize.col("createdAt"))]
+    var groceriesCondition = {
+      where: {
+        UserUserId: UserUserId,
+        Category: "groceries"
       }
     };
-    db.Item.findAll(condition).then(function(itemDataForChart) {
-      res.json(itemDataForChart);
-      var monthlyTotals = Object.keys(itemDataForChart);
-      console.log(monthlyTotals);
-      console.log(monthlyTotals.Price);
+    db.Item.findAll(groceriesCondition).then(function(totalGroceries) {
+      res.json(totalGroceries);
+      console.log(totalGroceries);
       //
       // all data should be grouped in the response by month of creation, not sure how to deal with it from here, but once that is sorted it just needs to be converted to array with Object.keys and it should be able to be passed to the graphing npm
       //
     });
   });
 
-  // Pie Graph API Call (aka Category distribution)
-  app.get("/api/pieGraph/:UserUserId", function(req, res) {
+  // Bar Graph API Calls (get rent total)
+  app.get("/api/barGraphRent/:UserUserId", function(req, res) {
     var UserUserId = req.params.UserUserId;
-    var condition = {
+    var rentCondition = {
       where: {
-        UserUserId: UserUserId
+        UserUserId: UserUserId,
+        Category: "rent"
       }
     };
-    db.User.findOne(condition).then(function(getUsers) {
-      if (getUsers) {
-        console.log("User Found:");
-        //var userid = getUsers.UserId;
-        //console.log("The logged in user's id is:" + getUsers);
-        res.json(getUsers);
-      } else {
-        console.log("No such user:");
-        res.status(404).send("No such user");
-      }
+    db.Item.findAll(rentCondition).then(function(totalrents) {
+      res.json(totalrents);
+      console.log(totalrents);
+      //
+      // all data should be grouped in the response by month of creation, not sure how to deal with it from here, but once that is sorted it just needs to be converted to array with Object.keys and it should be able to be passed to the graphing npm
+      //
     });
   });
 
-  // Line Graph API Call (want VS need spending)
-  app.get("/api/lineGraph/:UserUserId", function(req, res) {
-    var userId = req.params.UserUserId;
-    //var Password = req.params.Password;
-    console.log(userId);
-    //console.log(Password);
-    /*var condition = {
+  // Bar Graph API Calls (get debt total)
+  app.get("/api/barGraphDebt/:UserUserId", function(req, res) {
+    var UserUserId = req.params.UserUserId;
+    var debtCondition = {
       where: {
-        UserUserId: userId
-      }
-    };*/
-    var condition = {
-      attributes: {
-        include: [
-          [db.sequelize.fn("COUNT", db.sequelize.col("Typeof")), "Type"]
-        ]
+        UserUserId: UserUserId,
+        Category: "debt"
       }
     };
-    db.Item.findAll(condition).then(function(getUsers) {
-        if (getUsers) {
-          console.log("User Found:");
-          console.log(getUsers);
-          //var userid = getUsers.UserId;
-          //console.log("The logged in user's id is:" + getUsers);
-          res.json(getUsers);
-        } else {
-          console.log("No such user:");
-          res.status(404).send("No such user");
-        }
-      });
+    db.Item.findAll(debtCondition).then(function(totaldebt) {
+      res.json(totaldebt);
+      console.log(totaldebt);
+      //
+      // all data should be grouped in the response by month of creation, not sure how to deal with it from here, but once that is sorted it just needs to be converted to array with Object.keys and it should be able to be passed to the graphing npm
+      //
     });
-    //sequelize.query("select count(*) as count,Typeof from expenses.items where UserUserId = '1' group by Typeof;").spread((results, metadata)
-
-    /*db.Item.findAndCountAll(condition).then(function(getUsers) {
-      if (getUsers) {
-        console.log("User Found:");
-        console.log(getUsers);
-        //var userid = getUsers.UserId;
-        //console.log("The logged in user's id is:" + getUsers);
-        res.json(getUsers);
-      } else {
-        console.log("No such user:");
-        res.status(404).send("No such user");
-      }
-    });*/
+  });
 };
