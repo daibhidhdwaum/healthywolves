@@ -11,6 +11,8 @@ body{
   background-color: transparent;
   background-image: url(../images/accounting-image.jpg);
   height: 300px;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 .flow {
@@ -19,7 +21,6 @@ body{
   color: black;
   text-decoration: underline;
   margin-right: 160px;
-  margin-bottom: 40px;
   color: lightgrey;
 }
 
@@ -29,8 +30,6 @@ body{
   color: black;
   background-color: lightgrey;
   padding-right: 2px;
-  /* border: 1px solid black;
-  border-radius: 15%; */
 }
 
 .btn {
@@ -40,13 +39,19 @@ body{
 
 strong {
   background-color: transparent;
+  font-family: 'Oswald', sans-serif;
+  
+}
+
+p {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+
 }
 
 li {
   color: black;
-  font-size: 26px;
-  text-emphasis: bolder;
-  margin: 10px;
+  font-size: 18px;
 }
 
 label {
@@ -61,25 +66,32 @@ h3 {
 
 .itemTextBox {
   opacity: 0.6;
-  background-image: url("../Images/Bill2.jpg");
+  background-image: url("../Images/cheque-fill.jpg");
   background-position: center;
-  background-size: 60%;
-  padding: 15px;
-  margin: 5px;
+  background-size: 90%;
+  padding: 20px;
+  margin: 10px 0px 10px 0px;
+  border: solid;
   border-color: black;
   border-width: 2px;
-  border-style: dashed;
   border-radius: 5px;
 }
 
-p{
-color: red;
-margin-left: 350px; 
-font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-font-size: 10px;
+.items {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  margin: 0px;
+  padding-bottom: 5px;
 }
-h4{
-  color: red;
- font-size: 10px; 
- 
+
+.custom-select {
+  border: 1px solid black;
+}
+
+#chartHolder {
+  background-color: black;
+}
+
+.refresh {
+  margin-top: 15px;
 }

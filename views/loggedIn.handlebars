@@ -3,8 +3,8 @@
   {{!-- header --}}
 
   <div class="jumbotron header sticky-top">
-    <div class="col">
-      <h1 class="text-right"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
+    <div class="col pb-4">
+      <h1 class="text-right mx-1"><span class="flow">flow</span><br><span class="expense-tracker border border-dark rounded">Expense
           Tracker</span></h1>
     </div>
   </div>
@@ -25,7 +25,7 @@
               <div class="row">
 
                 <div class="col mr-1 my-1">
-                  <input type="number" id="item-price" class="form-control" aria-label="Dollar ammount (with dot and two decimal places)">
+                  <input type="number" id="item-price" class="form-control custom-select" aria-label="Dollar ammount (with dot and two decimal places)">
                 </div>
 
                 <div class="col my-1">
@@ -63,24 +63,26 @@
         {{!-- // page alert to be replaced when code is updated --}}
         
         <div class="row">
-          <div class="container mx-auto" style="width:80%">
-            
+          <div class="container text-center py-4">
+            <p class="refresh"> * refresh page to update item list * </p>
           </div>
         </div>
 
         {{!-- Interactive Display of users items in database w/ handlebars --}}
-        <div class="row mt-5" id="botLeftRow">
+        <div class="row" id="botLeftRow">
           <div class="col">
             <div class="container">
               {{!-- handlebars from database of users items with ability to delete from database --}}
-              <h3 class="text-left py-5">User Items</h3>
+              <h3 class="text-left mx-2 my-0">User Items</h3>
               <ul id="user-items" class="list-group">
                 {{#each userData}}
-                <div class="itemTextBox my-2">
+                <div class="itemTextBox align-left">
                   <li class="list-group-item ">
-                    <strong>Price $</strong>{{this.Price}} <br> <strong>Type: </strong>{{this.Typeof}} <br> <strong>Category:
-                    </strong>{{this.Category}}
-                    <button class="btn btn-danger float-right delete" data-id="{{this.itemId}}">ｘ</button>
+                    <p class="items">Price: $<span>{{this.Price}}</span></p>
+                    <p class="items">Type: {{this.Typeof}}</p>
+                    <p class="items">Category: {{this.Category}}<span><button class="btn btn-secondary float-right delete"
+                          data-id="{{this.itemId}}">ｘ</button></span></p>
+
                   </li>
                 </div>
                 {{/each}}
@@ -92,16 +94,17 @@
       </div>
 
       {{!-- Start of main right side column --}}
-      <div class="col ml-1 mr-2" id="mainColRight">
+      <div class="col" id="mainColRight">
 
         {{!-- User selection fields for modifying graphs --}}
-        <div class="row float-right" id="topRightRow">
+        <div class="row mx-1" id="topRightRow">
 
           {{!-- chart dropdown --}}
-          <div class="col float-right">
+          <div class="col">
+
             <form>
-              <div class="row float-right">
-                <div class="dropdown mx-2 float-right">
+              <div class="row">
+                <div class="dropdown">
                   <div class="col my-1">
                     <div class="input-group">
                       <select class="custom-select" id="choose-chart" aria-label="Choose A Category">
@@ -113,40 +116,44 @@
                     </div>
                   </div>
                 </div>
-              </div>
             </form>
-            <input class="btn btn-secondary" type="submit" value="Choose Chart" id="choose-chart-submit">
-          </div>
 
-        </div>
-
-        {{!-- Box to display graphs--}}
-
-        <div class="row mt-5" id="botRightRow">
-          <div class="col">
-
-            <div class="container m-2 mt-4">
-              {{!-- this is where the charts display --}}
-              <div id="chartHolder">
-                <canvas id="LineChart" width="400" height="400"></canvas>
-                <canvas id="PieChart" width="400" height="400"></canvas>
-                <canvas id="BarChart" width="400" height="400"></canvas>
-              </div>
+            <div class="col ml-1 my-1">
+              <input class="btn btn-secondary" type="submit" value="Add Item" id="new-item-submit">
             </div>
-
           </div>
-        </div>
 
+        </div>
       </div>
 
+      {{!-- Box to display graphs--}}
+
+      <div class="row mt-5" id="botRightRow">
+        <div class="col">
+
+          <div class="container">
+            {{!-- this is where the charts display --}}
+            
+            <div id="chartHolder">
+              <canvas id="LineChart" width="400" height="400"></canvas>
+              <canvas id="PieChart" width="400" height="400"></canvas>
+              <canvas id="BarChart" width="400" height="400"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
     </div>
+  
+
   </div>
+</div>
 
-  {{!--libraries--}}
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+{{!--libraries--}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
-  {{!--custom script--}}
-  <script src="/js/loggedIn.js"></script>
-  <script src="/js/chart.js"></script>
+{{!--custom script--}}
+<script src="/js/loggedIn.js"></script>
+<script src="/js/chart.js"></script>
