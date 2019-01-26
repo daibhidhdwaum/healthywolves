@@ -29,8 +29,8 @@ $(document).ready(function() {
         url: "api/items/" + itemId,
         type: "DELETE"
       });
-    },
-    barChartMe: function(currentUser) {
+    }
+    /*barChartMe: function(currentUser) {
       return $.ajax({
         url: "/api/barGraph/" + currentUser,
         //data: whatBarChart,
@@ -50,7 +50,7 @@ $(document).ready(function() {
        // data: whatPieChart,
         type: "GET"
       });
-    }
+    }*/
   };
 
   // refreshItems gets new items from the db and repopulates the list
@@ -113,7 +113,7 @@ $(document).ready(function() {
     $("#item-category").val("");
   }
 
-  $selectNewChart.on("click", gimmieAChart);
+ /* $selectNewChart.on("click", gimmieAChart);
   function gimmieAChart(event) {
     console.log("Entered gimmieAChart function:");
     event.preventDefault();
@@ -149,5 +149,5 @@ $(document).ready(function() {
 
   var renderBar = function() {
     API.barChartMe(currentUser);
-  };
+  };*/
 });
