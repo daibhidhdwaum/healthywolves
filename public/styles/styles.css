@@ -21,7 +21,6 @@ body{
   color: black;
   text-decoration: underline;
   margin-right: 160px;
-  margin-bottom: 40px;
   color: lightgrey;
 }
 
@@ -31,8 +30,6 @@ body{
   color: black;
   background-color: lightgrey;
   padding-right: 2px;
-  /* border: 1px solid black;
-  border-radius: 15%; */
 }
 
 .btn {
@@ -89,4 +86,12 @@ h3 {
 
 .custom-select {
   border: 1px solid black;
+}
+
+#chartHolder {
+  background-color: black;
+}
+
+.refresh {
+  margin-top: 15px;
 }
