@@ -1,7 +1,4 @@
 var db = require("../models");
-
-// I'm just writing this here as a test
-
 module.exports = function(app) {
   // Login and Password Check for index.handlebars
   app.get("/api/users/:userName/:Password", function(req, res) {
@@ -138,15 +135,37 @@ module.exports = function(app) {
     //var Password = req.params.Password;
     console.log(userId);
     //console.log(Password);
-    var condition = {
+    /*var condition = {
       where: {
         UserUserId: userId
       }
+    };*/
+    var condition = {
+      attributes: {
+        include: [
+          [db.sequelize.fn("COUNT", db.sequelize.col("Typeof")), "Type"]
+        ]
+      }
     };
-
     db.Item.findAll(condition).then(function(getUsers) {
+        if (getUsers) {
+          console.log("User Found:");
+          console.log(getUsers);
+          //var userid = getUsers.UserId;
+          //console.log("The logged in user's id is:" + getUsers);
+          res.json(getUsers);
+        } else {
+          console.log("No such user:");
+          res.status(404).send("No such user");
+        }
+      });
+    });
+    //sequelize.query("select count(*) as count,Typeof from expenses.items where UserUserId = '1' group by Typeof;").spread((results, metadata)
+
+    /*db.Item.findAndCountAll(condition).then(function(getUsers) {
       if (getUsers) {
         console.log("User Found:");
+        console.log(getUsers);
         //var userid = getUsers.UserId;
         //console.log("The logged in user's id is:" + getUsers);
         res.json(getUsers);
@@ -154,6 +173,5 @@ module.exports = function(app) {
         console.log("No such user:");
         res.status(404).send("No such user");
       }
-    });
-  });
+    });*/
 };
