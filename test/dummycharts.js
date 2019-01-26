@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
   $("#choose-chart").change(function() {
     $("img[class=chart-types]").attr("src", $(this).val());
   });
@@ -18,7 +18,7 @@ function groupColours(a) {
         colourGroup.push(dynamicColours());}
     return colourGroup;
 }
-*/
+
   //Global chart configurations
   Chart.defaults.global.defaultFontColor = "black";
   Chart.defaults.global.defaultFontSize = 14;
@@ -148,4 +148,4 @@ function groupColours(a) {
       }
     }
   });
-});
+});*/

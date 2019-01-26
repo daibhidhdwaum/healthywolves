@@ -131,29 +131,24 @@ module.exports = function(app) {
 
   // Line Graph API Call (want VS need spending)
   app.get("/api/lineGraph/:UserUserId", function(req, res) {
+    console.log("Entered lineGraph");
     var userId = req.params.UserUserId;
-    //var Password = req.params.Password;
-    console.log(userId);
-    //console.log(Password);
-    /*var condition = {
-      where: {
-        UserUserId: userId
-      }
-    };*/
-    var condition = {
-      attributes: {
-        include: [
-          [db.sequelize.fn("COUNT", db.sequelize.col("Typeof")), "Type"]
-        ]
-      }
-    };
-    db.Item.findAll(condition).then(function(getUsers) {
-        if (getUsers) {
+    var TotCount;
+    //console.log(this);
+    db.sequelize.query("select count(*) as totCount from Items where UserUserId = "+"'"+ userId +"';").then(function(count){
+      TotCount = count;
+      
+    });
+    //console.log("Total Count is" + TotCount);
+    db.sequelize.query("select count(*) as count,Typeof from items where UserUserId = " +"'"+ userId +"'"+" group by Typeof;").then(function(results) {
+        if (results)
+         {
           console.log("User Found:");
-          console.log(getUsers);
+          console.log(results);
+         // console.log("Total count"+ TotCount);
           //var userid = getUsers.UserId;
           //console.log("The logged in user's id is:" + getUsers);
-          res.json(getUsers);
+         // res.json(results);
         } else {
           console.log("No such user:");
           res.status(404).send("No such user");
