@@ -64,7 +64,7 @@
         
         <div class="row">
           <div class="container text-center py-4">
-            <p class="refresh"> * refresh page to update item list * </p>
+            {{!--<p class="refresh"> * refresh page to update item list * </p>--}}
           </div>
         </div>
 
@@ -135,9 +135,11 @@
             {{!-- this is where the charts display --}}
             <img src="" class="chart-types">
             <div id="chartHolder">
-              <canvas id="LineChart" width="400" height="400"></canvas>
+              {{!--<canvas id="LineChart" width="400" height="400"></canvas>
               <canvas id="PieChart" width="400" height="400"></canvas>
-              <canvas id="BarChart" width="400" height="400"></canvas>
+              <canvas id="BarChart" width="400" height="400"></canvas>--}}
+        <img src = "/Images/Bar-Chart.png" alt ="Dummy Chart">
+
             </div>
           </div>
 
@@ -156,5 +158,5 @@
 
 {{!--custom script--}}
 <script src="/js/loggedIn.js"></script>
-<script src="/js/chart.js"></script>
+{{!--<script src="/js/chart.js"></script>--}}
 <script src="/js/dummycharts.js"></script>
