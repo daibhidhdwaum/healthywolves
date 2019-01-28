@@ -1,7 +1,7 @@
 var db = require("../models");
-module.exports = function(app) {
+module.exports = function (app) {
   // Login and Password Check for index.handlebars
-  app.get("/api/users/:userName/:Password", function(req, res) {
+  app.get("/api/users/:userName/:Password", function (req, res) {
     var userName = req.params.userName;
     var Password = req.params.Password;
     console.log(userName);
@@ -12,7 +12,7 @@ module.exports = function(app) {
         Password: Password
       }
     };
-    db.User.findOne(condition).then(function(getUsers) {
+    db.User.findOne(condition).then(function (getUsers) {
       if (getUsers) {
         console.log("User Found:");
         //var userid = getUsers.UserId;
@@ -26,7 +26,7 @@ module.exports = function(app) {
   });
 
   // generates custom url for loggedIn.handlebars and passes it the item table reference
-  app.get("/api/loggedIn/:userid", function(req, res) {
+  app.get("/api/loggedIn/:userid", function (req, res) {
     var userId = req.param.userid;
     console.log(userId);
     var condition = {
@@ -36,17 +36,17 @@ module.exports = function(app) {
     };
     res.json(UserUserId);
     // passes items for that user to the loggedIn page
-    db.Item.findAll(condition).then(function(getItems) {
+    db.Item.findAll(condition).then(function (getItems) {
       res.json(getItems);
     });
   });
 
   // Create a new user
-  app.post("/api/users", function(req, res) {
+  app.post("/api/users", function (req, res) {
     db.User.create({
       userName: req.body.userName,
       Password: req.body.Password
-    }).then(function(newUser) {
+    }).then(function (newUser) {
       if (newUser) {
         res.json(newUser);
       } else {
@@ -57,7 +57,7 @@ module.exports = function(app) {
   });
 
   // Create a new item
-  app.post("/api/items", function(req, res) {
+  app.post("/api/items", function (req, res) {
     var Price = req.body.Price;
     var TypeOf = req.body.Typeof;
     var Category = req.body.Category;
@@ -72,21 +72,21 @@ module.exports = function(app) {
       Typeof: req.body.Typeof,
       Category: req.body.Category,
       UserUserId: req.body.UserUserId
-    }).then(function(newItem) {
+    }).then(function (newItem) {
       console.log(newItem);
       res.status(200).send("Item Created");
     });
   });
 
   // Delete a item (only for logged in user)
-  app.delete("/loggedIn/api/items/:itemId", function(req, res) {
-    db.Item.destroy({ where: { itemId: req.params.itemId } }).then(function() {
+  app.delete("/loggedIn/api/items/:itemId", function (req, res) {
+    db.Item.destroy({ where: { itemId: req.params.itemId } }).then(function () {
       res.status(200).send("Item Destroyed");
     });
   });
   //-------------------------------------------------------Charts code--------------------------------------------------//
   // Bar Graph API Call (aka Month to Month total spending)
-  app.get("/api/barGraph/:UserUserId", function(req, res) {
+  app.get("/api/barGraph/:UserUserId", function (req, res) {
     var UserUserId = req.params.UserUserId;
     var condition = {
       include: {
@@ -97,7 +97,7 @@ module.exports = function(app) {
         group: [sequelize.fn("date_trunc", "month", sequelize.col("createdAt"))]
       }
     };
-    db.Item.findAll(condition).then(function(itemDataForChart) {
+    db.Item.findAll(condition).then(function (itemDataForChart) {
       res.json(itemDataForChart);
       var monthlyTotals = Object.keys(itemDataForChart);
       console.log(monthlyTotals);
@@ -108,65 +108,56 @@ module.exports = function(app) {
     });
   });
 
-  // Pie Graph API Call (aka Category distribution)
-  app.get("/api/pieGraph/:UserUserId", function(req, res) {
-    var UserUserId = req.params.UserUserId;
-    var condition = {
-      where: {
-        UserUserId: UserUserId
-      }
-    };
-    db.User.findOne(condition).then(function(getUsers) {
-      if (getUsers) {
+  // Pie Graph API Call (aka Category and Price distribution)
+  app.get("/api/pieGraph/:UserUserId", function (req, res) {
+    var userId = req.params.UserUserId;
+
+    db.sequelize.query("select Category as category,sum(Price) as totPrice from items where UserUserId = " + "'" + userId + "'" + " group by Category;").then(function (results) {
+      if (results) {
         console.log("User Found:");
-        //var userid = getUsers.UserId;
-        //console.log("The logged in user's id is:" + getUsers);
-        res.json(getUsers);
+        console.log(results);
+         var GrocObj = results[0][0];
+        /* var wantCount = wantObj["count"];
+         var needCount = needObj["count"];
+         var totCount = wantCount + needCount;
+         var chartLineInput = {
+           wantCount: wantCount,
+           needCount: needCount,
+           totalCount: totCount
+           
+         };*/
+        // res.json(chartLineInput);
+        console.log(GrocObj);
+      } else {
+        console.log("No such user:");
+        res.status(404).send("No such user");
+      }
+    });
+
+  });
+
+  // Line Graph API Call (want VS need spending)
+  app.get("/api/lineGraph/:UserUserId", function (req, res) {
+    var userId = req.params.UserUserId;
+
+    db.sequelize.query("select count(*) as count,Typeof from items where UserUserId = " + "'" + userId + "'" + " group by Typeof;").then(function (results) {
+      if (results) {
+        console.log("User Found:");
+        var wantObj = results[0][0];
+        var needObj = results[0][1];
+        var wantCount = wantObj["count"];
+        var needCount = needObj["count"];
+        var totCount = wantCount + needCount;
+        var chartLineInput = {
+          wantCount: wantCount,
+          needCount: needCount,
+          totalCount: totCount
+        };
+        res.json(chartLineInput);
       } else {
         console.log("No such user:");
         res.status(404).send("No such user");
       }
     });
   });
-
-  // Line Graph API Call (want VS need spending)
-  app.get("/api/lineGraph/:UserUserId", function(req, res) {
-    console.log("Entered lineGraph");
-    var userId = req.params.UserUserId;
-    var TotCount;
-    //console.log(this);
-    db.sequelize.query("select count(*) as totCount from Items where UserUserId = "+"'"+ userId +"';").then(function(count){
-      TotCount = count;
-      
-    });
-    //console.log("Total Count is" + TotCount);
-    db.sequelize.query("select count(*) as count,Typeof from items where UserUserId = " +"'"+ userId +"'"+" group by Typeof;").then(function(results) {
-        if (results)
-         {
-          console.log("User Found:");
-          console.log(results);
-         // console.log("Total count"+ TotCount);
-          //var userid = getUsers.UserId;
-          //console.log("The logged in user's id is:" + getUsers);
-         // res.json(results);
-        } else {
-          console.log("No such user:");
-          res.status(404).send("No such user");
-        }
-      });
-    });
-    //sequelize.query("select count(*) as count,Typeof from expenses.items where UserUserId = '1' group by Typeof;").spread((results, metadata)
-
-    /*db.Item.findAndCountAll(condition).then(function(getUsers) {
-      if (getUsers) {
-        console.log("User Found:");
-        console.log(getUsers);
-        //var userid = getUsers.UserId;
-        //console.log("The logged in user's id is:" + getUsers);
-        res.json(getUsers);
-      } else {
-        console.log("No such user:");
-        res.status(404).send("No such user");
-      }
-    });*/
 };

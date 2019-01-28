@@ -116,7 +116,7 @@ $(document).ready(function() {
   $selectNewChart.on("click", gimmieAChart);
   function gimmieAChart(event) {
     console.log("Entered gimmieAChart function:");
-    debugger
+    
     event.preventDefault();
     var whichChart = $("#choose-chart")
       .val()
