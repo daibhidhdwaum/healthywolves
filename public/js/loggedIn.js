@@ -147,7 +147,7 @@ $(document).ready(function() {
   var renderLine = function() {
     API.lineChartMe(currentUser);
   };
-
+  console.log(renderLine);
   var renderBar = function() {
     API.barChartMe(currentUser);
   };
