@@ -10,14 +10,14 @@
 
 
   <div class="container">
-
+    <strong><p>All fields are mandatory!</p></strong>
     <div class="row">
       <div class="col-8 offset-2">
         <form class="clearfix mx-auto" style="width:60%" action="POST">
           <div class="form-group">
             <label for="new-user">New User</label>
-            <input type="text" id="new-user" class="form-control" aria-describedby="New User Name" placeholder="Enter Name">
-            <input type="text" id="new-user-pass" class="form-control" aria-describedby="New User Password" placeholder="Enter Password">
+            <input type="text" id="new-user" class="form-control" aria-describedby="New User Name" placeholder="Enter Name" class="required">
+            <input type="text" id="new-user-pass" class="form-control" aria-describedby="New User Password" placeholder="Enter Password"class="required">
             <br>
             <button id="new-user-submit" class="btn btn-secondary float-right">Create User</button>
           </div>
@@ -25,8 +25,8 @@
         <form class="clearfix mx-auto" style="width:60%" action="GET">
           <div class="form-group">
             <label for="user-login">Existing User Login</label>
-            <input type="text" id="user-login" class="form-control" aria-describedby="Existing User Name" placeholder="Enter Name">
-            <input type="password" id="user-login-pass" class="form-control" aria-describedby="Login Password"
+            <input type="text" id="user-login" class="form-control required" aria-describedby="Existing User Name" placeholder="Enter Name">
+            <input type="password" id="user-login-pass" class="form-control required" aria-describedby="Login Password"
               placeholder="Enter Password">
             <br>
             <button id="user-login-submit" class="btn btn-secondary float-right">Login user</button>
